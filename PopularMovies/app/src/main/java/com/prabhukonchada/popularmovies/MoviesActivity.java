@@ -9,5 +9,10 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
+
+        // Add MovieGridFragment to this activity
+        getSupportFragmentManager().beginTransaction().add(R.id.container,new MovieGridFragment()).commit();
+
+
     }
 }
