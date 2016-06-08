@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.prabhukonchada.popularmovies.MovieGridFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textStyle="bold"
-        android:textSize="50dp"
-        android:text="@string/hello_blank_fragment" />
+<GridView
+    android:layout_width="match_parent"
+    android:id="@+id/movieGrid"
+    android:numColumns="auto_fit"
+    android:stretchMode="columnWidth"
+    android:gravity="center"
+    android:layout_height="match_parent">
+</GridView>
 
 </FrameLayout>
