@@ -4,6 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="the_movie_db_url">https://api.themoviedb.org</string>
 
     <!-- List Preference To Sort Movies -->
     <string name="pref_menu_title">Preferences</string>
@@ -14,7 +15,7 @@
     <string name="pref_sort_option_label_most_top_rated">Top Rated</string>
 
     <string name="pref_sort_option_value_most_popular" translatable="false">popular</string>
-    <string name="pref_sort_option_value_most_top_rated" translatable="false">top</string>
+    <string name="pref_sort_option_value_most_top_rated" translatable="false">top_rated</string>
 
     <string name="pref_sort_key" translatable="false">sort</string>
 

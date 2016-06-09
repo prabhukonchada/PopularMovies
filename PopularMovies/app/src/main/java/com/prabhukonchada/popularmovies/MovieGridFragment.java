@@ -49,6 +49,8 @@ public class MovieGridFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
         GridView moviesGrid = (GridView)rootView.findViewById(R.id.movieGrid);
         moviesGrid.setAdapter(new MovieGridAdapter(getActivity()));
+
+        new RetrieveMovieDataFromNetwork(new MovieGridAdapter(getActivity())).execute();
         return rootView;
     }
 
