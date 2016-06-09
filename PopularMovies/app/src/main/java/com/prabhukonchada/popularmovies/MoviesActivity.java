@@ -1,7 +1,7 @@
 package com.prabhukonchada.popularmovies;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class MoviesActivity extends AppCompatActivity {
 
@@ -12,7 +12,5 @@ public class MoviesActivity extends AppCompatActivity {
 
         // Add MovieGridFragment to this activity
         getSupportFragmentManager().beginTransaction().add(R.id.container,new MovieGridFragment()).commit();
-
-
     }
 }

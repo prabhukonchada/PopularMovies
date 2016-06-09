@@ -6,7 +6,9 @@
 
 
     <!-- List Preference To Sort Movies -->
-    <string name="pref_sort_title">Sort Preference</string>
+    <string name="pref_menu_title">Preferences</string>
+
+    <string name="pref_sort_title">Movie Sort Preferences</string>
 
     <string name="pref_sort_option_label_most_popular">Most Popular</string>
     <string name="pref_sort_option_label_most_top_rated">Top Rated</string>
@@ -16,7 +18,7 @@
 
     <string name="pref_sort_key" translatable="false">sort</string>
 
-    <string name="pref_sort_default_value" translatable="false">popular</string>
+    <string name="pref_sort_default_value" translatable="false">@string/pref_sort_option_value_most_popular</string>
 
     <string-array name="pref_sort_options_labels">
         <item>@string/pref_sort_option_label_most_popular</item>
@@ -27,5 +29,6 @@
         <item>@string/pref_sort_option_value_most_popular</item>
         <item>@string/pref_sort_option_value_most_top_rated</item>
     </string-array>
+    <string name="title_activity_sort_movies_preference">Preferences</string>
 
 </resources>

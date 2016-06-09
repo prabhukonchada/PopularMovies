@@ -15,6 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SortMoviesPreferenceActivity"
+            android:label="@string/title_activity_sort_movies_preference"
+            android:parentActivityName=".MoviesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.prabhukonchada.popularmovies.MoviesActivity" />
+        </activity>
     </application>
 
 </manifest>
