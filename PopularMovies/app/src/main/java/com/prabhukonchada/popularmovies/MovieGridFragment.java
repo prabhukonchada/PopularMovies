@@ -3,7 +3,9 @@ package com.prabhukonchada.popularmovies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -49,8 +51,9 @@ public class MovieGridFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
         GridView moviesGrid = (GridView)rootView.findViewById(R.id.movieGrid);
         moviesGrid.setAdapter(new MovieGridAdapter(getActivity()));
-
-        new RetrieveMovieDataFromNetwork(new MovieGridAdapter(getActivity())).execute();
+        String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),"popular");
+        Log.d("Preference :",preferenceValue);
+        new RetrieveMovieDataFromNetwork(new MovieGridAdapter(getActivity())).execute(preferenceValue);
         return rootView;
     }
 
