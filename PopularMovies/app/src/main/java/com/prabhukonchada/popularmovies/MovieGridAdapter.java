@@ -10,7 +10,7 @@ import android.widget.ImageView;
  * Created by Prabhu Konchada on 09/06/16
  * you can contact me at : prabhukonchada@gmail.com
  */
-public class ImageAdapter extends BaseAdapter
+public class MovieGridAdapter extends BaseAdapter
 {
     private Context applicationContext;
     private Integer[] mThumbIds = {
@@ -19,7 +19,7 @@ public class ImageAdapter extends BaseAdapter
             R.drawable.sample_5,R.drawable.sample_6
     };
 
-    public ImageAdapter(Context context)
+    public MovieGridAdapter(Context context)
     {
         applicationContext = context;
     }

@@ -1,7 +1,6 @@
 package com.prabhukonchada.popularmovies;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,9 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 
 
 /**
@@ -51,7 +48,7 @@ public class MovieGridFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
         GridView moviesGrid = (GridView)rootView.findViewById(R.id.movieGrid);
-        moviesGrid.setAdapter(new ImageAdapter(getActivity()));
+        moviesGrid.setAdapter(new MovieGridAdapter(getActivity()));
         return rootView;
     }
 
