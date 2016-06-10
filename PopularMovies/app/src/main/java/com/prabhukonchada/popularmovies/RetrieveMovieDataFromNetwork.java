@@ -4,6 +4,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,7 +68,7 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
             jsonMovieResponse = buffer.toString();
             Log.d("Json Response :",jsonMovieResponse);
 
-            //TODO : Parse Json String to get an ArrayList<String> which will be returned.
+            return parseJsonResponse(jsonMovieResponse);
         }
         catch (Exception e)
         {
@@ -87,6 +91,32 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         }
 
         return null;
+    }
+
+    private ArrayList<MovieDataModel> parseJsonResponse(String jsonData) throws JSONException
+    {
+        final String RESULTS_LIST = "results";
+        final String MOVIE_OVERVIEW = "overview";
+        final String MOVIE_TITLE = "title";
+        final String MOVIE_IMAGE_THUMBNAIL = "backdrop_path";
+
+
+        ArrayList<MovieDataModel> movieDataItems = new ArrayList<MovieDataModel>();
+
+        JSONObject moviesJsonObject = new JSONObject(jsonData);
+        JSONArray movieResults = moviesJsonObject.getJSONArray(RESULTS_LIST);
+        for (int i = 0; i < movieResults.length(); i++) {
+            StringBuffer IMAGE_URL = new StringBuffer("http://image.tmdb.org/t/p/");
+            JSONObject jsonMovieDataObject = movieResults.getJSONObject(i);
+            MovieDataModel movieDataObject = new MovieDataModel();
+            movieDataObject.setMovieName(jsonMovieDataObject.getString(MOVIE_TITLE));
+            movieDataObject.setMoviePlotSynopsis(jsonMovieDataObject.getString(MOVIE_OVERVIEW));
+            movieDataObject.setMoviePosterImageThumbnail((IMAGE_URL.append(jsonMovieDataObject.getString(MOVIE_IMAGE_THUMBNAIL))).toString());
+            movieDataItems.add(movieDataObject);
+        }
+
+        Log.d("Movie Results: ",movieResults.toString());
+        return movieDataItems;
     }
 
     @Override
