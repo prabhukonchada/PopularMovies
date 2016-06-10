@@ -34,4 +34,7 @@
     <string name="title_activity_movie_detail">Movie Detail</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Serializable Extra MovieModel Object Key-->
+    <string name="movie_object">MovieModelDataObject</string>
+
 </resources>

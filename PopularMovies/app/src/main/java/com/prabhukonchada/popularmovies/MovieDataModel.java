@@ -1,10 +1,12 @@
 package com.prabhukonchada.popularmovies;
 
+import java.io.Serializable;
+
 /**
  * Created by Prabhu Konchada on 09/06/16
  * you can contact me at : prabhukonchada@gmail.com
  */
-public class MovieDataModel {
+public class MovieDataModel implements Serializable {
     private String movieName;
     private String moviePosterImageThumbnail;
     private String moviePlotSynopsis;

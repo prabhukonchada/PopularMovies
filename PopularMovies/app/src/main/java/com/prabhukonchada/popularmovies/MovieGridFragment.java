@@ -61,6 +61,9 @@ public class MovieGridFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MovieDataModel movieObject = (MovieDataModel) parent.getItemAtPosition(position);
                 Toast.makeText(getActivity(), movieObject.getMovieName(), Toast.LENGTH_SHORT).show();
+                Intent navigateToMovieDetail = new Intent(getActivity(),MovieDetailActivity.class);
+                navigateToMovieDetail.putExtra(getString(R.string.movie_object),movieObject);
+                startActivity(navigateToMovieDetail);
             }
         };
 
