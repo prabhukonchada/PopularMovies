@@ -12,7 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 
 /**
@@ -53,8 +55,17 @@ public class MovieGridFragment extends Fragment {
         String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),"popular");
         Log.d("Preference :",preferenceValue);
         new RetrieveMovieDataFromNetwork(moviesGrid,new MovieGridAdapter(getActivity())).execute(preferenceValue);
+
+        AdapterView.OnItemClickListener movieGridListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MovieDataModel movieObject = (MovieDataModel) parent.getItemAtPosition(position);
+                Toast.makeText(getActivity(), movieObject.getMovieName(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        moviesGrid.setOnItemClickListener(movieGridListener);
         return rootView;
     }
-
 
 }

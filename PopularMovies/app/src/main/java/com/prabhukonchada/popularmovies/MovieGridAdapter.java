@@ -40,7 +40,7 @@ public class MovieGridAdapter extends BaseAdapter
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return movieDataModelArrayList.get(position);
     }
 
     @Override
