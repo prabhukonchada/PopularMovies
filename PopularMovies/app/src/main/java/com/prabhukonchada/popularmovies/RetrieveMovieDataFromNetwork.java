@@ -101,7 +101,10 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         final String RESULTS_LIST = "results";
         final String MOVIE_OVERVIEW = "overview";
         final String MOVIE_TITLE = "title";
-        final String MOVIE_IMAGE_THUMBNAIL = "backdrop_path";
+        final String MOVIE_IMAGE_THUMBNAIL = "poster_path";
+        final String MOVIE_IMAGE = "backdrop_path";
+        final String VOTE_AVERAGE = "vote_average";
+        final String RELEASE_DATE = "release_date";
 
 
         ArrayList<MovieDataModel> movieDataItems = new ArrayList<MovieDataModel>();
@@ -114,6 +117,9 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
             MovieDataModel movieDataObject = new MovieDataModel();
             movieDataObject.setMovieName(jsonMovieDataObject.getString(MOVIE_TITLE));
             movieDataObject.setMoviePlotSynopsis(jsonMovieDataObject.getString(MOVIE_OVERVIEW));
+            movieDataObject.setMovieImage(jsonMovieDataObject.getString(MOVIE_IMAGE));
+            movieDataObject.setReleaseDate(jsonMovieDataObject.getString(RELEASE_DATE));
+            movieDataObject.setVoteAverage(jsonMovieDataObject.getString(VOTE_AVERAGE));
             movieDataObject.setMoviePosterImageThumbnail((IMAGE_URL.append(jsonMovieDataObject.getString(MOVIE_IMAGE_THUMBNAIL))).toString());
             movieDataItems.add(movieDataObject);
         }

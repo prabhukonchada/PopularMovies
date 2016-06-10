@@ -10,6 +10,24 @@ public class MovieDataModel {
     private String moviePlotSynopsis;
     private String userRating;
     private String releaseDate;
+    private String movieImage;
+    private String voteAverage;
+
+    public String getVoteAverage() {
+        return voteAverage;
+    }
+
+    public void setVoteAverage(String voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
+    public String getMovieImage() {
+        return movieImage;
+    }
+
+    public void setMovieImage(String movieImage) {
+        this.movieImage = movieImage;
+    }
 
     public String getMovieName() {
         return movieName;
