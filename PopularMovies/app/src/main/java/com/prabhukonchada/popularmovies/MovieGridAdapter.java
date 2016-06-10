@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Prabhu Konchada on 09/06/16
  * you can contact me at : prabhukonchada@gmail.com
@@ -13,21 +15,28 @@ import android.widget.ImageView;
 public class MovieGridAdapter extends BaseAdapter
 {
     private Context applicationContext;
+    ArrayList<MovieDataModel> movieDataModelArrayList;
     private Integer[] mThumbIds = {
             R.drawable.sample_1,R.drawable.sample_2,
             R.drawable.sample_3,R.drawable.sample_4,
             R.drawable.sample_5,R.drawable.sample_6
     };
 
-    public MovieGridAdapter(Context context)
+    public MovieGridAdapter(Context applicationContext)
     {
-        applicationContext = context;
+        this.applicationContext = applicationContext;
+    }
+
+    public MovieGridAdapter(Context applicationContext,ArrayList<MovieDataModel> movieDataModelArrayList)
+    {
+        this.applicationContext = applicationContext;
+        this.movieDataModelArrayList = movieDataModelArrayList;
     }
 
 
     @Override
     public int getCount() {
-        return mThumbIds.length;
+        return movieDataModelArrayList.size();
     }
 
     @Override
