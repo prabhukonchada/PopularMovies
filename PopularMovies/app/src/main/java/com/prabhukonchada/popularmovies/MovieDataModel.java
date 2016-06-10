@@ -19,6 +19,7 @@ public class MovieDataModel {
         this.movieName = movieName;
     }
 
+
     public String getMoviePosterImageThumbnail() {
         return moviePosterImageThumbnail;
     }
@@ -27,6 +28,7 @@ public class MovieDataModel {
         this.moviePosterImageThumbnail = moviePosterImageThumbnail;
     }
 
+    // A plot synopsis (called overview in the api)
     public String getMoviePlotSynopsis() {
         return moviePlotSynopsis;
     }
@@ -35,6 +37,7 @@ public class MovieDataModel {
         this.moviePlotSynopsis = moviePlotSynopsis;
     }
 
+    // User rating (called vote_average in the api)
     public String getUserRating() {
         return userRating;
     }
