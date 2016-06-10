@@ -8,7 +8,7 @@
         android:id="@+id/movieThumbnail"
         fresco:fadeDuration="300"
         fresco:actualImageScaleType="focusCrop"
-        fresco:placeholderImage="@color/colorPrimary"
+        fresco:placeholderImage="@drawable/placeholder"
         fresco:viewAspectRatio="1.33"
         fresco:placeholderImageScaleType="fitCenter"
         fresco:failureImageScaleType="centerInside"
@@ -16,7 +16,6 @@
         fresco:progressBarImage="@drawable/progress_bar"
         fresco:progressBarImageScaleType="centerInside"
         fresco:progressBarAutoRotateInterval="1000"
-        fresco:backgroundImage="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
