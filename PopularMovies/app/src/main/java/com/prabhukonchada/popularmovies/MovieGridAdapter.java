@@ -51,18 +51,13 @@ public class MovieGridAdapter extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View customView = null;
         SimpleDraweeView imageView;
         if(convertView == null) {
-            customView = inflater.inflate(R.layout.movie_item,null);
-        }
-        else
-        {
-            customView = convertView;
+            convertView = inflater.inflate(R.layout.movie_item,null);
         }
 
-        imageView = (SimpleDraweeView) customView.findViewById(R.id.movieThumbnail);
+        imageView = (SimpleDraweeView) convertView.findViewById(R.id.movieThumbnail);
         imageView.setImageURI(Uri.parse(movieDataModelArrayList.get(position).getMoviePosterImageThumbnail()));
-        return customView;
+        return convertView;
     }
 }
