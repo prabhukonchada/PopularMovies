@@ -50,7 +50,6 @@ public class MovieGridFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
         GridView moviesGrid = (GridView)rootView.findViewById(R.id.movieGrid);
-//        moviesGrid.setAdapter(new MovieGridAdapter(getActivity()));
         String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),"popular");
         Log.d("Preference :",preferenceValue);
         new RetrieveMovieDataFromNetwork(moviesGrid,new MovieGridAdapter(getActivity())).execute(preferenceValue);
