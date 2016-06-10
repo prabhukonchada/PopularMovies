@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/movieThumbnail"
+        fresco:fadeDuration="300"
+        fresco:actualImageScaleType="focusCrop"
+        fresco:placeholderImage="@color/colorPrimary"
+        fresco:viewAspectRatio="1.33"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:failureImage="@drawable/sample_1"
+        fresco:failureImageScaleType="centerInside"
+        fresco:retryImage="@drawable/sample_2"
+        fresco:retryImageScaleType="centerCrop"
+        fresco:progressBarImage="@drawable/sample_3"
+        fresco:progressBarImageScaleType="centerInside"
+        fresco:progressBarAutoRotateInterval="1000"
+        fresco:backgroundImage="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>

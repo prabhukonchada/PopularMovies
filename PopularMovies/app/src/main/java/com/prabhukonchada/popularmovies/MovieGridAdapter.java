@@ -1,10 +1,13 @@
 package com.prabhukonchada.popularmovies;
 
 import android.content.Context;
+import android.net.Uri;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
@@ -16,11 +19,6 @@ public class MovieGridAdapter extends BaseAdapter
 {
     private Context applicationContext;
     ArrayList<MovieDataModel> movieDataModelArrayList;
-    private Integer[] mThumbIds = {
-            R.drawable.sample_1,R.drawable.sample_2,
-            R.drawable.sample_3,R.drawable.sample_4,
-            R.drawable.sample_5,R.drawable.sample_6
-    };
 
     public MovieGridAdapter(Context applicationContext)
     {
@@ -52,17 +50,19 @@ public class MovieGridAdapter extends BaseAdapter
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if(convertView == null)
-        {
-            imageView = new ImageView(applicationContext);
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        LayoutInflater inflater = (LayoutInflater) applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View customView = null;
+        SimpleDraweeView imageView;
+        if(convertView == null) {
+            customView = inflater.inflate(R.layout.movie_item,null);
         }
         else
         {
-            imageView = (ImageView)convertView;
+            customView = convertView;
         }
-        imageView.setImageResource(mThumbIds[position]);
-        return imageView;
+
+        imageView = (SimpleDraweeView) customView.findViewById(R.id.movieThumbnail);
+        imageView.setImageURI(Uri.parse(movieDataModelArrayList.get(position).getMoviePosterImageThumbnail()));
+        return customView;
     }
 }

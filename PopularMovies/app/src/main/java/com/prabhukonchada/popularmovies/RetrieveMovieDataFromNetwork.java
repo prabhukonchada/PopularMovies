@@ -109,7 +109,7 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         JSONObject moviesJsonObject = new JSONObject(jsonData);
         JSONArray movieResults = moviesJsonObject.getJSONArray(RESULTS_LIST);
         for (int i = 0; i < movieResults.length(); i++) {
-            StringBuffer IMAGE_URL = new StringBuffer("http://image.tmdb.org/t/p/");
+            StringBuffer IMAGE_URL = new StringBuffer("http://image.tmdb.org/t/p/w185");
             JSONObject jsonMovieDataObject = movieResults.getJSONObject(i);
             MovieDataModel movieDataObject = new MovieDataModel();
             movieDataObject.setMovieName(jsonMovieDataObject.getString(MOVIE_TITLE));
@@ -119,6 +119,10 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         }
 
         Log.d("Movie Results: ",movieResults.toString());
+        Log.d("Movie Data Items: ","Print Movie Data Item");
+        for (MovieDataModel movie: movieDataItems) {
+            Log.d("Image : ",movie.getMoviePosterImageThumbnail());
+        }
         return movieDataItems;
     }
 
