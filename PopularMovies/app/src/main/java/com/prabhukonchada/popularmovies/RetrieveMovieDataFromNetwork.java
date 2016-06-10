@@ -3,6 +3,7 @@ package com.prabhukonchada.popularmovies;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.GridView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,11 +23,13 @@ import java.util.ArrayList;
  */
 public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieDataModel>>{
 
+    String theMovieDbBaseUrl = "http://api.themoviedb.org/3/movie/";
+    GridView movieGrid;
     MovieGridAdapter adapter;
 
-    String theMovieDbBaseUrl = "http://api.themoviedb.org/3/movie/";
-    public RetrieveMovieDataFromNetwork(MovieGridAdapter adapter)
+    public RetrieveMovieDataFromNetwork(GridView movieGrid, MovieGridAdapter adapter)
     {
+        this.movieGrid = movieGrid;
         this.adapter = adapter;
     }
 
@@ -122,5 +125,10 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
     @Override
     protected void onPostExecute(ArrayList<MovieDataModel> movieDataModels) {
         super.onPostExecute(movieDataModels);
+        if(movieDataModels.size() > 0)
+        {
+            adapter.setMovieDataModelArrayList(movieDataModels);
+            movieGrid.setAdapter(adapter);
+        }
     }
 }

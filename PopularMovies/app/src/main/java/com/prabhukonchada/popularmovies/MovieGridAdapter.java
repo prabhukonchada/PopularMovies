@@ -27,12 +27,13 @@ public class MovieGridAdapter extends BaseAdapter
         this.applicationContext = applicationContext;
     }
 
-    public MovieGridAdapter(Context applicationContext,ArrayList<MovieDataModel> movieDataModelArrayList)
-    {
-        this.applicationContext = applicationContext;
-        this.movieDataModelArrayList = movieDataModelArrayList;
+    public ArrayList<MovieDataModel> getMovieDataModelArrayList() {
+        return movieDataModelArrayList;
     }
 
+    public void setMovieDataModelArrayList(ArrayList<MovieDataModel> movieDataModelArrayList) {
+        this.movieDataModelArrayList = movieDataModelArrayList;
+    }
 
     @Override
     public int getCount() {
