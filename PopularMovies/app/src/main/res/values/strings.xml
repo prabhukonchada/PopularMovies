@@ -31,5 +31,7 @@
         <item>@string/pref_sort_option_value_most_top_rated</item>
     </string-array>
     <string name="title_activity_sort_movies_preference">Preferences</string>
+    <string name="title_activity_movie_detail">Movie Detail</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
