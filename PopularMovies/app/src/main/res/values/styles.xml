@@ -22,23 +22,23 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="fadeDuration">300</item>
+        <item name="fadeDuration">@dimen/fade_duration_image</item>
         <item name="actualImageScaleType">fitCenter</item>
         <item name="failureImageScaleType">centerInside</item>
         <item name="retryImageScaleType">centerCrop</item>
         <item name="progressBarImageScaleType">centerInside</item>
         <item name="progressBarImage">@drawable/progress_bar</item>
         <item name="placeholderImage">@drawable/placeholder</item>
-        <item name="progressBarAutoRotateInterval">1000</item>
+        <item name="progressBarAutoRotateInterval">@dimen/porgress_bar_rotate_interval</item>
         <item name="placeholderImageScaleType">fitCenter</item>
     </style>
 
     <style name="movie_back_ground_image_style" parent="image_style">
-        <item name="viewAspectRatio">1.33</item>
+        <item name="viewAspectRatio">@dimen/aspect_ratio_background_image</item>
     </style>
 
     <style name="movie_poster_image_style" parent="image_style">
-        <item name="viewAspectRatio">0.68</item>
+        <item name="viewAspectRatio">@dimen/aspect_ratio_poster_image</item>
     </style>
 
     <style name="text_view_style">
