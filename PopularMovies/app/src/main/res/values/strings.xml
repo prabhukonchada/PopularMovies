@@ -38,4 +38,6 @@
     <string name="vote_average_max">/10</string>
     <string name="the_movie_db_url">http://api.themoviedb.org/3/movie/</string>
     <string name="image_url_small">http://image.tmdb.org/t/p/w185</string>
+    <string name="api_key_string">api_key</string>
+    <string name="http_get_method">GET</string>
 </resources>

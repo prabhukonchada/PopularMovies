@@ -1,5 +1,6 @@
 package com.prabhukonchada.popularmovies;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -25,32 +26,27 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
 
     GridView movieGrid;
     MovieGridAdapter adapter;
-    String theMovieDbUrl = null;
-    String imageUrlSmall = null;
-    String imageUrlLarge = null;
+    Context context;
 
-    public RetrieveMovieDataFromNetwork(GridView movieGrid, MovieGridAdapter adapter,String theMovieDbUrl,String imageUrlSmall,String imageUrlLarge)
+    public RetrieveMovieDataFromNetwork(GridView movieGrid, MovieGridAdapter adapter, Context context)
     {
         this.movieGrid = movieGrid;
         this.adapter = adapter;
-        this.theMovieDbUrl = theMovieDbUrl;
-        this.imageUrlSmall = imageUrlSmall;
-        this.imageUrlLarge = imageUrlLarge;
+        this.context = context;
     }
 
     @Override
     protected ArrayList<MovieDataModel> doInBackground(String... sortPreferenceKey) {
 
-
-        Uri.Builder builder = Uri.parse((String) theMovieDbUrl).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter("api_key",BuildConfig.MOVIE_DB_API_KEY);
+        Uri.Builder builder = Uri.parse((String) context.getString(R.string.the_movie_db_url)).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter(context.getString(R.string.api_key_string),BuildConfig.MOVIE_DB_API_KEY);
         HttpURLConnection urlConnection=null;
         BufferedReader readMovieData = null;
-        String jsonMovieResponse = null;
+        String jsonMovieResponse;
 
         try {
             URL url = new URL(builder.toString());
             urlConnection = (HttpURLConnection)url.openConnection();
-            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestMethod(context.getString(R.string.http_get_method));
             urlConnection.connect();
 
             InputStream movieDataInputStream = urlConnection.getInputStream();
@@ -110,13 +106,13 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         final String RELEASE_DATE = "release_date";
 
 
-        ArrayList<MovieDataModel> movieDataItems = new ArrayList<MovieDataModel>();
+        ArrayList<MovieDataModel> movieDataItems = new ArrayList<>();
 
         JSONObject moviesJsonObject = new JSONObject(jsonData);
         JSONArray movieResults = moviesJsonObject.getJSONArray(RESULTS_LIST);
         for (int i = 0; i < movieResults.length(); i++) {
-            StringBuffer IMAGE_URL_SMALL = new StringBuffer(imageUrlSmall);
-            StringBuffer IMAGE_URL_LARGE = new StringBuffer(imageUrlLarge);
+            StringBuffer IMAGE_URL_SMALL = new StringBuffer(context.getString(R.string.image_url_small));
+            StringBuffer IMAGE_URL_LARGE = new StringBuffer(context.getString(R.string.image_url_large));
             JSONObject jsonMovieDataObject = movieResults.getJSONObject(i);
             MovieDataModel movieDataObject = new MovieDataModel();
             movieDataObject.setMovieName(jsonMovieDataObject.getString(MOVIE_TITLE));
