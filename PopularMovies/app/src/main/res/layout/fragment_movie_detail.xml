@@ -7,72 +7,105 @@
     tools:context="com.prabhukonchada.popularmovies.MovieDetailActivityFragment"
     tools:showIn="@layout/activity_movie_detail">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/movieBackgroundImage"
-        fresco:fadeDuration="300"
-        fresco:viewAspectRatio="1.33"
-        fresco:actualImageScaleType="fitCenter"
-        fresco:placeholderImage="@drawable/placeholder"
-        fresco:placeholderImageScaleType="fitCenter"
-        fresco:failureImageScaleType="centerInside"
-        fresco:retryImageScaleType="centerCrop"
-        fresco:progressBarImage="@drawable/progress_bar"
-        fresco:progressBarImageScaleType="centerInside"
-        fresco:progressBarAutoRotateInterval="1000"
+    <ScrollView
         android:layout_width="match_parent"
-        android:adjustViewBounds="true"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/movieTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="36dp"
-                tools:text="8.1/10"/>
+                tools:text="Sardar Gabbar Singh"
+                android:paddingTop="35dp"
+                android:paddingBottom="35dp"
+                android:background="@color/colorAccent"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp" />
+
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/movieBackgroundImage"
+                fresco:fadeDuration="300"
+                fresco:viewAspectRatio="1.33"
+                fresco:actualImageScaleType="fitCenter"
+                fresco:placeholderImage="@drawable/placeholder"
+                fresco:placeholderImageScaleType="fitCenter"
+                fresco:failureImageScaleType="centerInside"
+                fresco:retryImageScaleType="centerCrop"
+                fresco:progressBarImage="@drawable/progress_bar"
+                fresco:progressBarImageScaleType="centerInside"
+                fresco:progressBarAutoRotateInterval="1000"
+                android:layout_width="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:layout_margin="@dimen/activity_horizontal_margin"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:gravity="right"
+                <LinearLayout
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    tools:text="2016"/>
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/movieRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="36dp"
+                        tools:text="8.1/10"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/movieReleaseDate"
+                            android:gravity="right"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            tools:text="2016"/>
+                        <TextView
+                            android:id="@+id/movieRuntime"
+                            android:gravity="right"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            tools:text="120minutes"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
                 <TextView
-                    android:gravity="right"
+                    android:id="@+id/movieSynopsis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    tools:text="120minutes"/>
-            </LinearLayout>
+                    android:textColor="#000000"
+                    tools:text = "The Synopsis goes here ..."/>
 
+            </LinearLayout>
 
         </LinearLayout>
 
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/movieSynopsis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:textColor="#000000"
-            tools:text = "The Synopsis goes here ..."/>
 
-    </LinearLayout>
+
+
 
 
 </LinearLayout>
