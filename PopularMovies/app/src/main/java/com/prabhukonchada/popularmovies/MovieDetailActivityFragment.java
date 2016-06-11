@@ -15,7 +15,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
  */
 public class MovieDetailActivityFragment extends Fragment {
 
-    final String TAG = "DetailActivityFragment";
     TextView movieTitle;
     TextView movieRating;
     TextView movieReleaseDate;

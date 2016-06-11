@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.util.Log;
 
 
 /**
@@ -28,7 +27,6 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Log.d("Preference :",newValue.toString());
         String value = newValue.toString();
         if(preference instanceof ListPreference)
         {

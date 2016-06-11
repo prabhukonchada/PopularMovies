@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 
 /**
@@ -56,7 +55,6 @@ public class MovieGridFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MovieDataModel movieObject = (MovieDataModel) parent.getItemAtPosition(position);
-                Toast.makeText(getActivity(), movieObject.getMovieName(), Toast.LENGTH_SHORT).show();
                 Intent navigateToMovieDetail = new Intent(getActivity(),MovieDetailActivity.class);
                 navigateToMovieDetail.putExtra(getString(R.string.movie_object),movieObject);
                 startActivity(navigateToMovieDetail);
