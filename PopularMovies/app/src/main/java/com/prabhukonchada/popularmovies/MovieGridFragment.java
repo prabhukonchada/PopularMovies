@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,8 +20,6 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class MovieGridFragment extends Fragment {
-
-
 
     public MovieGridFragment() {
         // Required empty public constructor
@@ -53,8 +50,7 @@ public class MovieGridFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
         GridView moviesGrid = (GridView)rootView.findViewById(R.id.movieGrid);
         String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),getString(R.string.default_preference_of_user));
-        Log.d("Preference :",preferenceValue);
-        new RetrieveMovieDataFromNetwork(moviesGrid,new MovieGridAdapter(getActivity())).execute(preferenceValue);
+        new RetrieveMovieDataFromNetwork(moviesGrid,new MovieGridAdapter(getActivity()),getString(R.string.the_movie_db_url),getString(R.string.image_url_small),getString(R.string.image_url_large)).execute(preferenceValue);
 
         AdapterView.OnItemClickListener movieGridListener = new AdapterView.OnItemClickListener() {
             @Override

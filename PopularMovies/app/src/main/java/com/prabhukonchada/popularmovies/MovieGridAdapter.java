@@ -25,10 +25,6 @@ public class MovieGridAdapter extends BaseAdapter
         this.applicationContext = applicationContext;
     }
 
-    public ArrayList<MovieDataModel> getMovieDataModelArrayList() {
-        return movieDataModelArrayList;
-    }
-
     public void setMovieDataModelArrayList(ArrayList<MovieDataModel> movieDataModelArrayList) {
         this.movieDataModelArrayList = movieDataModelArrayList;
     }

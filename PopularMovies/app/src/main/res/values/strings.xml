@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Popular Movies</string>
 
-    <string name="the_movie_db_url">https://api.themoviedb.org</string>
-
     <!-- List Preference To Sort Movies -->
     <string name="pref_menu_title">Preferences</string>
 
@@ -36,4 +34,8 @@
 
 
     <string name="default_preference_of_user">popular</string>
+    <string name="image_url_large">http://image.tmdb.org/t/p/w780</string>
+    <string name="vote_average_max">/10</string>
+    <string name="the_movie_db_url">http://api.themoviedb.org/3/movie/</string>
+    <string name="image_url_small">http://image.tmdb.org/t/p/w185</string>
 </resources>

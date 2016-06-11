@@ -23,21 +23,26 @@ import java.util.ArrayList;
  */
 public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieDataModel>>{
 
-    String theMovieDbBaseUrl = "http://api.themoviedb.org/3/movie/";
     GridView movieGrid;
     MovieGridAdapter adapter;
+    String theMovieDbUrl = null;
+    String imageUrlSmall = null;
+    String imageUrlLarge = null;
 
-    public RetrieveMovieDataFromNetwork(GridView movieGrid, MovieGridAdapter adapter)
+    public RetrieveMovieDataFromNetwork(GridView movieGrid, MovieGridAdapter adapter,String theMovieDbUrl,String imageUrlSmall,String imageUrlLarge)
     {
         this.movieGrid = movieGrid;
         this.adapter = adapter;
+        this.theMovieDbUrl = theMovieDbUrl;
+        this.imageUrlSmall = imageUrlSmall;
+        this.imageUrlLarge = imageUrlLarge;
     }
 
     @Override
     protected ArrayList<MovieDataModel> doInBackground(String... sortPreferenceKey) {
 
 
-        Uri.Builder builder = Uri.parse(theMovieDbBaseUrl).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter("api_key",BuildConfig.MOVIE_DB_API_KEY);
+        Uri.Builder builder = Uri.parse((String) theMovieDbUrl).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter("api_key",BuildConfig.MOVIE_DB_API_KEY);
         HttpURLConnection urlConnection=null;
         BufferedReader readMovieData = null;
         String jsonMovieResponse = null;
@@ -110,15 +115,16 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         JSONObject moviesJsonObject = new JSONObject(jsonData);
         JSONArray movieResults = moviesJsonObject.getJSONArray(RESULTS_LIST);
         for (int i = 0; i < movieResults.length(); i++) {
-            StringBuffer IMAGE_URL = new StringBuffer("http://image.tmdb.org/t/p/w185");
+            StringBuffer IMAGE_URL_SMALL = new StringBuffer(imageUrlSmall);
+            StringBuffer IMAGE_URL_LARGE = new StringBuffer(imageUrlLarge);
             JSONObject jsonMovieDataObject = movieResults.getJSONObject(i);
             MovieDataModel movieDataObject = new MovieDataModel();
             movieDataObject.setMovieName(jsonMovieDataObject.getString(MOVIE_TITLE));
             movieDataObject.setMoviePlotSynopsis(jsonMovieDataObject.getString(MOVIE_OVERVIEW));
-            movieDataObject.setMovieImage(jsonMovieDataObject.getString(MOVIE_IMAGE));
+            movieDataObject.setMovieImage(IMAGE_URL_LARGE.append(jsonMovieDataObject.getString(MOVIE_IMAGE)).toString());
             movieDataObject.setReleaseDate(jsonMovieDataObject.getString(RELEASE_DATE));
             movieDataObject.setVoteAverage(jsonMovieDataObject.getString(VOTE_AVERAGE));
-            movieDataObject.setMoviePosterImageThumbnail((IMAGE_URL.append(jsonMovieDataObject.getString(MOVIE_IMAGE_THUMBNAIL))).toString());
+            movieDataObject.setMoviePosterImageThumbnail((IMAGE_URL_SMALL.append(jsonMovieDataObject.getString(MOVIE_IMAGE_THUMBNAIL))).toString());
             movieDataItems.add(movieDataObject);
         }
 
