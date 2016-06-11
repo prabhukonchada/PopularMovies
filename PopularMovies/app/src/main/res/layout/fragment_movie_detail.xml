@@ -1,11 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     tools:context="com.prabhukonchada.popularmovies.MovieDetailActivityFragment"
-    tools:showIn="@layout/activity_movie_detail">
+    tools:showIn="@layout/activity_movie_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,19 +31,9 @@
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/movieBackgroundImage"
-                fresco:fadeDuration="300"
                 fresco:viewAspectRatio="1.33"
                 fresco:actualImageScaleType="fitCenter"
-                fresco:placeholderImage="@drawable/placeholder"
-                fresco:placeholderImageScaleType="fitCenter"
-                fresco:failureImageScaleType="centerInside"
-                fresco:retryImageScaleType="centerCrop"
-                fresco:progressBarImage="@drawable/progress_bar"
-                fresco:progressBarImageScaleType="centerInside"
-                fresco:progressBarAutoRotateInterval="1000"
-                android:layout_width="match_parent"
-                android:adjustViewBounds="true"
-                android:layout_height="wrap_content" />
+                style="@style/image_style" />
 
             <LinearLayout
                 android:layout_margin="@dimen/activity_horizontal_margin"
@@ -90,10 +79,4 @@
         </LinearLayout>
 
     </ScrollView>
-
-
-
-
-
-
-</LinearLayout>
+</FrameLayout>

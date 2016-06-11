@@ -16,5 +16,22 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="image_style" >
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="fadeDuration">300</item>
+        <item name="actualImageScaleType">fitCenter</item>
+        <item name="failureImageScaleType">centerInside</item>
+        <item name="retryImageScaleType">centerCrop</item>
+        <item name="progressBarImageScaleType">centerInside</item>
+        <item name="progressBarImage">@drawable/progress_bar</item>
+        <item name="placeholderImage">@drawable/placeholder</item>
+        <item name="progressBarAutoRotateInterval">1000</item>
+        <item name="placeholderImageScaleType">fitCenter</item>
+
+    </style>
+    
 
 </resources>

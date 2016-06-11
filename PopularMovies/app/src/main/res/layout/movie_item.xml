@@ -6,18 +6,7 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/movieThumbnail"
-        fresco:fadeDuration="300"
         fresco:viewAspectRatio="0.68"
-        fresco:actualImageScaleType="fitCenter"
-        fresco:placeholderImage="@drawable/placeholder"
-        fresco:placeholderImageScaleType="fitCenter"
-        fresco:failureImageScaleType="centerInside"
-        fresco:retryImageScaleType="centerCrop"
-        fresco:progressBarImage="@drawable/progress_bar"
-        fresco:progressBarImageScaleType="centerInside"
-        fresco:progressBarAutoRotateInterval="1000"
-        android:layout_width="match_parent"
-        android:adjustViewBounds="true"
-        android:layout_height="wrap_content" />
+        style="@style/image_style" />
 
 </FrameLayout>
