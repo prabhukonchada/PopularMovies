@@ -43,7 +43,6 @@ public class MovieDetailActivityFragment extends Fragment {
         movieSynopsis.setText(movieObject.getMoviePlotSynopsis());
         String imageUrl = IMAGE_URL.append(movieObject.getMovieImage()).toString();
         movieBackgroundImage.setImageURI(Uri.parse(imageUrl));
-
         return rootView;
 
     }

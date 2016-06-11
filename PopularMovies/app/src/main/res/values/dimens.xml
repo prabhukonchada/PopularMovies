@@ -12,8 +12,4 @@
     <dimen name="linear_layout_vertical_margin">16dp</dimen>
     <dimen name="linear_layout_horizontal_margin">16dp</dimen>
 
-    <dimen name="fade_duration_image">300</dimen>
-    <dimen name="porgress_bar_rotate_interval">1000</dimen>
-    <dimen name="aspect_ratio_background_image">1.33</dimen>
-    <dimen name="aspect_ratio_poster_image">0.68</dimen>
 </resources>
