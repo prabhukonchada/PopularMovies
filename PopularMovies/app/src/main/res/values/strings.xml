@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Popular Movies</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="the_movie_db_url">https://api.themoviedb.org</string>
 
     <!-- List Preference To Sort Movies -->
@@ -37,4 +34,6 @@
     <!-- Serializable Extra MovieModel Object Key-->
     <string name="movie_object">MovieModelDataObject</string>
 
+
+    <string name="default_preference_of_user">popular</string>
 </resources>
