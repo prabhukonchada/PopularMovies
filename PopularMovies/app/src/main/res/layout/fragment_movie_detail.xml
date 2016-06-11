@@ -1,77 +1,41 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     tools:context="com.prabhukonchada.popularmovies.MovieDetailActivityFragment"
     tools:showIn="@layout/activity_movie_detail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/width_height_match_parent_layout_view">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:layout_height="match_parent">
+    <ScrollView style="@style/scroll_view">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+        <LinearLayout style="@style/linear_layout_vertical_match_all">
 
             <TextView
                 android:id="@+id/movieTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Sardar Gabbar Singh"
-                android:paddingTop="35dp"
-                android:paddingBottom="35dp"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:background="@color/colorAccent"
-                android:textColor="#FFFFFF"
-                android:textSize="30dp" />
-
+                style="@style/title_text_view_style"
+                tools:text="Sardar Gabbar Singh" />
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/movieBackgroundImage"
-                fresco:viewAspectRatio="1.33"
-                fresco:actualImageScaleType="fitCenter"
-                style="@style/image_style" />
+                style="@style/movie_back_ground_image_style" />
 
-            <LinearLayout
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <LinearLayout style="@style/linear_layout_containing_rating_release_date">
 
-                <LinearLayout
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="match_parent">
+                <LinearLayout style="@style/linear_layout_horizontal_match_all">
 
                     <TextView
                         android:id="@+id/movieRating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="36dp"
+                        style="@style/movie_rating_text_view"
                         tools:text="8.1/10"/>
-
 
                     <TextView
                         android:id="@+id/movieReleaseDate"
-                        android:gravity="right"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        tools:text="2016"/>
+                        style="@style/movie_release_text_view"
+                        tools:text="2016 - 11 - 14"/>
 
                 </LinearLayout>
 
-
                 <TextView
                     android:id="@+id/movieSynopsis"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="#000000"
+                    style="@style/movie_synopsis_text_view"
                     tools:text = "The Synopsis goes here ..."/>
 
             </LinearLayout>
@@ -79,4 +43,5 @@
         </LinearLayout>
 
     </ScrollView>
+
 </FrameLayout>
