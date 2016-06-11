@@ -38,7 +38,6 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
 
 
         Uri.Builder builder = Uri.parse(theMovieDbBaseUrl).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter("api_key",BuildConfig.MOVIE_DB_API_KEY);
-        Log.d("Url Hit :",builder.toString());
         HttpURLConnection urlConnection=null;
         BufferedReader readMovieData = null;
         String jsonMovieResponse = null;
@@ -69,7 +68,6 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
                 return null;
             }
             jsonMovieResponse = buffer.toString();
-            Log.d("Json Response :",jsonMovieResponse);
 
             return parseJsonResponse(jsonMovieResponse);
         }
@@ -124,11 +122,6 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
             movieDataItems.add(movieDataObject);
         }
 
-        Log.d("Movie Results: ",movieResults.toString());
-        Log.d("Movie Data Items: ","Print Movie Data Item");
-        for (MovieDataModel movie: movieDataItems) {
-            Log.d("Image : ",movie.getMoviePosterImageThumbnail());
-        }
         return movieDataItems;
     }
 

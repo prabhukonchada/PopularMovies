@@ -10,7 +10,6 @@ public class MovieDataModel implements Serializable {
     private String movieName;
     private String moviePosterImageThumbnail;
     private String moviePlotSynopsis;
-    private String userRating;
     private String releaseDate;
     private String movieImage;
     private String voteAverage;
@@ -19,6 +18,7 @@ public class MovieDataModel implements Serializable {
         return voteAverage;
     }
 
+    // User rating (called vote_average in the api)
     public void setVoteAverage(String voteAverage) {
         this.voteAverage = voteAverage;
     }
@@ -55,15 +55,6 @@ public class MovieDataModel implements Serializable {
 
     public void setMoviePlotSynopsis(String moviePlotSynopsis) {
         this.moviePlotSynopsis = moviePlotSynopsis;
-    }
-
-    // User rating (called vote_average in the api)
-    public String getUserRating() {
-        return userRating;
-    }
-
-    public void setUserRating(String userRating) {
-        this.userRating = userRating;
     }
 
     public String getReleaseDate() {

@@ -30,19 +30,22 @@ public class MovieDetailActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
+        StringBuffer IMAGE_URL = new StringBuffer("http://image.tmdb.org/t/p/w780");
+
         MovieDataModel movieObject = (MovieDataModel) getActivity().getIntent().getSerializableExtra(getString(R.string.movie_object));
+        StringBuffer voteAverage = new StringBuffer(movieObject.getVoteAverage());
         movieTitle = (TextView)rootView.findViewById(R.id.movieTitle);
         movieRating = (TextView)rootView.findViewById(R.id.movieRating);
         movieReleaseDate = (TextView)rootView.findViewById(R.id.movieReleaseDate);
         movieRuntime = (TextView)rootView.findViewById(R.id.movieRuntime);
         movieSynopsis = (TextView)rootView.findViewById(R.id.movieSynopsis);
         movieBackgroundImage = (SimpleDraweeView)rootView.findViewById(R.id.movieBackgroundImage);
-
         movieTitle.setText(movieObject.getMovieName());
-        movieRating.setText(movieObject.getUserRating());
+        movieRating.setText(voteAverage.append("/10"));
         movieReleaseDate.setText(movieObject.getReleaseDate());
         movieSynopsis.setText(movieObject.getMoviePlotSynopsis());
-        movieBackgroundImage.setImageURI(Uri.parse(movieObject.getMovieImage()));
+        String imageUrl = IMAGE_URL.append(movieObject.getMovieImage()).toString();
+        movieBackgroundImage.setImageURI(Uri.parse(imageUrl));
 
         return rootView;
 
