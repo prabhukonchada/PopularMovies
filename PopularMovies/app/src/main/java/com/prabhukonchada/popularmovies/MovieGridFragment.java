@@ -32,6 +32,13 @@ public class MovieGridFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList("MovieData",movieDataModelArrayList);
+        super.onSaveInstanceState(outState);
+    }
+
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.preference_menu,menu);
     }
@@ -51,13 +58,21 @@ public class MovieGridFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),getString(R.string.default_preference_of_user));
-        try {
-            movieDataModelArrayList = new RetrieveMovieDataFromNetwork(getActivity()).execute(preferenceValue).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+
+        if(savedInstanceState == null || !savedInstanceState.containsKey("MovieData"))
+        {
+            String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),getString(R.string.default_preference_of_user));
+            try {
+                movieDataModelArrayList = new RetrieveMovieDataFromNetwork(getActivity()).execute(preferenceValue).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            movieDataModelArrayList = savedInstanceState.getParcelableArrayList("MovieData");
         }
 
     }
