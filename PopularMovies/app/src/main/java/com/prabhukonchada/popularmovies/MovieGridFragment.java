@@ -33,7 +33,7 @@ public class MovieGridFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("MovieData",movieDataModelArrayList);
+        outState.putParcelableArrayList(getString(R.string.parcelable_movie_model_list_key),movieDataModelArrayList);
         super.onSaveInstanceState(outState);
     }
 
@@ -58,7 +58,7 @@ public class MovieGridFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(savedInstanceState == null || !savedInstanceState.containsKey("MovieData"))
+        if(savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_list_key)))
         {
             String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),getString(R.string.default_preference_of_user));
             try {

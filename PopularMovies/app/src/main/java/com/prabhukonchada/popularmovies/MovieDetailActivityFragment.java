@@ -34,7 +34,7 @@ public class MovieDetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         StringBuffer IMAGE_URL = new StringBuffer(getString(R.string.image_url_large));
 
-        if(savedInstanceState == null || !savedInstanceState.containsKey("MovieData"))
+        if(savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_object)))
         {
             movieObject = getActivity().getIntent().getParcelableExtra(getString(R.string.movie_object));
         }
