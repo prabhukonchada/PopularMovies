@@ -20,9 +20,10 @@ public class MovieGridAdapter extends BaseAdapter
     private Context applicationContext;
     ArrayList<MovieDataModel> movieDataModelArrayList;
 
-    public MovieGridAdapter(Context applicationContext)
+    public MovieGridAdapter(Context applicationContext,ArrayList<MovieDataModel> movieDataModelArrayList)
     {
         this.applicationContext = applicationContext;
+        this.movieDataModelArrayList = movieDataModelArrayList;
     }
 
     public void setMovieDataModelArrayList(ArrayList<MovieDataModel> movieDataModelArrayList) {

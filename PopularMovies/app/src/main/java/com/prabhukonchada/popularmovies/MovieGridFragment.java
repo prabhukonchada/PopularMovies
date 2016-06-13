@@ -4,6 +4,7 @@ package com.prabhukonchada.popularmovies;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,11 +15,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MovieGridFragment extends Fragment {
+
+    ArrayList<MovieDataModel> movieDataModelArrayList;
 
     public MovieGridFragment() {
         // Required empty public constructor
@@ -43,25 +49,40 @@ public class MovieGridFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),getString(R.string.default_preference_of_user));
+        try {
+            movieDataModelArrayList = new RetrieveMovieDataFromNetwork(getActivity()).execute(preferenceValue).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
         GridView moviesGrid = (GridView)rootView.findViewById(R.id.movieGrid);
-        String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key),getString(R.string.default_preference_of_user));
-        new RetrieveMovieDataFromNetwork(moviesGrid,new MovieGridAdapter(getActivity()),getActivity()).execute(preferenceValue);
-
         AdapterView.OnItemClickListener movieGridListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MovieDataModel movieObject = (MovieDataModel) parent.getItemAtPosition(position);
-                Intent navigateToMovieDetail = new Intent(getActivity(),MovieDetailActivity.class);
-                navigateToMovieDetail.putExtra(getString(R.string.movie_object),movieObject);
+                Intent navigateToMovieDetail = new Intent(getActivity(), MovieDetailActivity.class);
+                navigateToMovieDetail.putExtra(getString(R.string.movie_object), movieObject);
                 startActivity(navigateToMovieDetail);
             }
         };
 
-        moviesGrid.setOnItemClickListener(movieGridListener);
+        if(movieDataModelArrayList.size() >0) {
+            MovieGridAdapter movieGridAdapter = new MovieGridAdapter(getActivity(), movieDataModelArrayList);
+            moviesGrid.setAdapter(movieGridAdapter);
+            moviesGrid.setOnItemClickListener(movieGridListener);
+        }
         return rootView;
     }
 

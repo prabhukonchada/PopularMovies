@@ -28,7 +28,7 @@ public class MovieDetailActivityFragment extends Fragment {
         StringBuffer IMAGE_URL = new StringBuffer(getString(R.string.image_url_large));
 
         // To pass objects we need to had MovieDataModel that implements serializable and here we are retrieving that object
-        MovieDataModel movieObject = (MovieDataModel) getActivity().getIntent().getSerializableExtra(getString(R.string.movie_object));
+        MovieDataModel movieObject = (MovieDataModel) getActivity().getIntent().getParcelableExtra(getString(R.string.movie_object));
 
         StringBuffer voteAverage = new StringBuffer(movieObject.getVoteAverage());
         movieTitle = (TextView)rootView.findViewById(R.id.movieTitle);

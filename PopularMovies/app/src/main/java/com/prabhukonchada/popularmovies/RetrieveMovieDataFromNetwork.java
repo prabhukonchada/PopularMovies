@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.GridView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,14 +23,10 @@ import java.util.ArrayList;
  */
 public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieDataModel>>{
 
-    GridView movieGrid;
-    MovieGridAdapter adapter;
     Context context;
 
-    public RetrieveMovieDataFromNetwork(GridView movieGrid, MovieGridAdapter adapter, Context context)
+    public RetrieveMovieDataFromNetwork(Context context)
     {
-        this.movieGrid = movieGrid;
-        this.adapter = adapter;
         this.context = context;
     }
 
@@ -127,13 +122,4 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         return movieDataItems;
     }
 
-    @Override
-    protected void onPostExecute(ArrayList<MovieDataModel> movieDataModels) {
-        super.onPostExecute(movieDataModels);
-        if(movieDataModels.size() > 0)
-        {
-            adapter.setMovieDataModelArrayList(movieDataModels);
-            movieGrid.setAdapter(adapter);
-        }
-    }
 }
