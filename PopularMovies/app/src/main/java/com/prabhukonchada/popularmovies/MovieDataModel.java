@@ -7,7 +7,19 @@ import android.os.Parcelable;
  * Created by Prabhu Konchada on 09/06/16
  * you can contact me at : prabhukonchada@gmail.com
  */
-public class MovieDataModel implements Parcelable{
+public class MovieDataModel implements Parcelable {
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<MovieDataModel> CREATOR = new Parcelable.Creator<MovieDataModel>() {
+        @Override
+        public MovieDataModel createFromParcel(Parcel in) {
+            return new MovieDataModel(in);
+        }
+
+        @Override
+        public MovieDataModel[] newArray(int size) {
+            return new MovieDataModel[size];
+        }
+    };
     private String movieName;
     private String moviePosterImageThumbnail;
     private String moviePlotSynopsis;
@@ -15,9 +27,7 @@ public class MovieDataModel implements Parcelable{
     private String movieImage;
     private String voteAverage;
 
-    public MovieDataModel()
-    {
-
+    public MovieDataModel() {
     }
 
     protected MovieDataModel(Parcel in) {
@@ -53,7 +63,6 @@ public class MovieDataModel implements Parcelable{
     public void setMovieName(String movieName) {
         this.movieName = movieName;
     }
-
 
     public String getMoviePosterImageThumbnail() {
         return moviePosterImageThumbnail;
@@ -94,17 +103,4 @@ public class MovieDataModel implements Parcelable{
         dest.writeString(movieImage);
         dest.writeString(voteAverage);
     }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<MovieDataModel> CREATOR = new Parcelable.Creator<MovieDataModel>() {
-        @Override
-        public MovieDataModel createFromParcel(Parcel in) {
-            return new MovieDataModel(in);
-        }
-
-        @Override
-        public MovieDataModel[] newArray(int size) {
-            return new MovieDataModel[size];
-        }
-    };
 }

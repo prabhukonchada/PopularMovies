@@ -15,13 +15,11 @@ import java.util.ArrayList;
  * Created by Prabhu Konchada on 09/06/16
  * you can contact me at : prabhukonchada@gmail.com
  */
-public class MovieGridAdapter extends BaseAdapter
-{
-    private Context applicationContext;
+public class MovieGridAdapter extends BaseAdapter {
     ArrayList<MovieDataModel> movieDataModelArrayList;
+    private Context applicationContext;
 
-    public MovieGridAdapter(Context applicationContext,ArrayList<MovieDataModel> movieDataModelArrayList)
-    {
+    public MovieGridAdapter(Context applicationContext, ArrayList<MovieDataModel> movieDataModelArrayList) {
         this.applicationContext = applicationContext;
         this.movieDataModelArrayList = movieDataModelArrayList;
     }
@@ -49,8 +47,8 @@ public class MovieGridAdapter extends BaseAdapter
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         SimpleDraweeView imageView;
-        if(convertView == null) {
-            convertView = inflater.inflate(R.layout.movie_item,null);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.movie_item, null);
         }
 
         imageView = (SimpleDraweeView) convertView.findViewById(R.id.movieThumbnail);

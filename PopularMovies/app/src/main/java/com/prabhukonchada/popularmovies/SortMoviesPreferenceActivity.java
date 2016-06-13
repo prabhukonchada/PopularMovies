@@ -15,7 +15,7 @@ public class SortMoviesPreferenceActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.sortMoviesPreference,new SettingsFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.sortMoviesPreference, new SettingsFragment()).commit();
 
     }
 

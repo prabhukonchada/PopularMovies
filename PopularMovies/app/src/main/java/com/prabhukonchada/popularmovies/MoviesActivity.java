@@ -16,6 +16,6 @@ public class MoviesActivity extends AppCompatActivity {
         Fresco.initialize(this);
 
         // Add MovieGridFragment to this activity
-        getSupportFragmentManager().beginTransaction().add(R.id.container,new MovieGridFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, new MovieGridFragment()).commit();
     }
 }

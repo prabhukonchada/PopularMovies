@@ -24,7 +24,7 @@ public class MovieDetailActivityFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(getString(R.string.parcelable_movie_model_object),movieObject);
+        outState.putParcelable(getString(R.string.parcelable_movie_model_object), movieObject);
         super.onSaveInstanceState(outState);
     }
 
@@ -34,21 +34,18 @@ public class MovieDetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         StringBuffer IMAGE_URL = new StringBuffer(getString(R.string.image_url_large));
 
-        if(savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_object)))
-        {
+        if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_object))) {
             movieObject = getActivity().getIntent().getParcelableExtra(getString(R.string.movie_object));
-        }
-        else
-        {
+        } else {
             movieObject = savedInstanceState.getParcelable(getString(R.string.parcelable_movie_model_object));
         }
 
         StringBuffer voteAverage = new StringBuffer(movieObject.getVoteAverage());
-        movieTitle = (TextView)rootView.findViewById(R.id.movieTitle);
-        movieRating = (TextView)rootView.findViewById(R.id.movieRating);
-        movieReleaseDate = (TextView)rootView.findViewById(R.id.movieReleaseDate);
-        movieSynopsis = (TextView)rootView.findViewById(R.id.movieSynopsis);
-        movieBackgroundImage = (SimpleDraweeView)rootView.findViewById(R.id.movieBackgroundImage);
+        movieTitle = (TextView) rootView.findViewById(R.id.movieTitle);
+        movieRating = (TextView) rootView.findViewById(R.id.movieRating);
+        movieReleaseDate = (TextView) rootView.findViewById(R.id.movieReleaseDate);
+        movieSynopsis = (TextView) rootView.findViewById(R.id.movieSynopsis);
+        movieBackgroundImage = (SimpleDraweeView) rootView.findViewById(R.id.movieBackgroundImage);
 
         movieTitle.setText(movieObject.getMovieName());
         movieRating.setText(voteAverage.append(getString(R.string.vote_average_max)));

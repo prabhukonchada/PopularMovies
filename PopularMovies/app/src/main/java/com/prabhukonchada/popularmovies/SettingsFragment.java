@@ -11,15 +11,16 @@ import android.preference.PreferenceFragment;
  * Created by Prabhu Konchada on 09/06/16
  * you can contact me at : prabhukonchada@gmail.com
  */
-public class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener{
+public class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     ListPreference movieSortOrderList;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.pref_sort_movies);
-        movieSortOrderList = (ListPreference)findPreference(getString(R.string.pref_sort_key));
+        movieSortOrderList = (ListPreference) findPreference(getString(R.string.pref_sort_key));
         movieSortOrderList.setOnPreferenceChangeListener(this);
         movieSortOrderList.setSummary(movieSortOrderList.getEntry());
     }
@@ -28,12 +29,10 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         String value = newValue.toString();
-        if(preference instanceof ListPreference)
-        {
-            movieSortOrderList = (ListPreference)preference;
+        if (preference instanceof ListPreference) {
+            movieSortOrderList = (ListPreference) preference;
             int index = movieSortOrderList.findIndexOfValue(value);
-            if(index >= 0)
-            {
+            if (index >= 0) {
                 movieSortOrderList.setSummary(movieSortOrderList.getEntries()[index]);
             }
         }
