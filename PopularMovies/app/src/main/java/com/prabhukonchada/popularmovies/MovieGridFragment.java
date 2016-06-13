@@ -37,7 +37,6 @@ public class MovieGridFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.preference_menu,menu);
@@ -92,7 +91,6 @@ public class MovieGridFragment extends Fragment {
                 startActivity(navigateToMovieDetail);
             }
         };
-
         if(movieDataModelArrayList.size() >0) {
             MovieGridAdapter movieGridAdapter = new MovieGridAdapter(getActivity(), movieDataModelArrayList);
             moviesGrid.setAdapter(movieGridAdapter);

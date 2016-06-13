@@ -20,6 +20,13 @@ public class MovieDetailActivityFragment extends Fragment {
     TextView movieReleaseDate;
     TextView movieSynopsis;
     SimpleDraweeView movieBackgroundImage;
+    MovieDataModel movieObject;
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(getString(R.string.parcelable_movie_model_object),movieObject);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,8 +34,14 @@ public class MovieDetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         StringBuffer IMAGE_URL = new StringBuffer(getString(R.string.image_url_large));
 
-        // To pass objects we need to had MovieDataModel that implements serializable and here we are retrieving that object
-        MovieDataModel movieObject = (MovieDataModel) getActivity().getIntent().getParcelableExtra(getString(R.string.movie_object));
+        if(savedInstanceState == null || !savedInstanceState.containsKey("MovieData"))
+        {
+            movieObject = getActivity().getIntent().getParcelableExtra(getString(R.string.movie_object));
+        }
+        else
+        {
+            movieObject = savedInstanceState.getParcelable(getString(R.string.parcelable_movie_model_object));
+        }
 
         StringBuffer voteAverage = new StringBuffer(movieObject.getVoteAverage());
         movieTitle = (TextView)rootView.findViewById(R.id.movieTitle);

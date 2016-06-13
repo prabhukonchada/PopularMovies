@@ -40,4 +40,7 @@
     <string name="image_url_small">http://image.tmdb.org/t/p/w185</string>
     <string name="api_key_string">api_key</string>
     <string name="http_get_method">GET</string>
+
+    <string name="parcelable_movie_model_list_key">MovieDataList</string>
+    <string name="parcelable_movie_model_object">MovieObject</string>
 </resources>
