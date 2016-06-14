@@ -9,13 +9,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by Prabhu Konchada on 09/06/16
@@ -25,6 +24,8 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
 
     Context context;
     String TAG = "Async Task :";
+    OkHttpClient client = new OkHttpClient();
+    ArrayList<MovieDataModel> movieDataModelArrayList;
 
     public RetrieveMovieDataFromNetwork(Context context)
     {
@@ -37,60 +38,14 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         Log.d(TAG, "doInBackground: Task");
 
         Uri.Builder builder = Uri.parse((String) context.getString(R.string.the_movie_db_url)).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter(context.getString(R.string.api_key_string),BuildConfig.MOVIE_DB_API_KEY);
-        HttpURLConnection urlConnection=null;
-        BufferedReader readMovieData = null;
-        String jsonMovieResponse;
-
+        String jsonMovieResponse = null;
         try {
-            URL url = new URL(builder.toString());
-            urlConnection = (HttpURLConnection)url.openConnection();
-            urlConnection.setRequestMethod(context.getString(R.string.http_get_method));
-            urlConnection.connect();
-
-            InputStream movieDataInputStream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
-            if(movieDataInputStream == null)
-            {
-                return null;
-            }
-            readMovieData = new BufferedReader(new InputStreamReader(movieDataInputStream));
-            String line;
-
-            while((line = readMovieData.readLine()) != null)
-            {
-                buffer.append(line +"\n");
-            }
-
-            if(buffer.length() == 0 )
-            {
-                // The stream is empty lets not parse
-                return null;
-            }
-            jsonMovieResponse = buffer.toString();
-
-            return parseJsonResponse(jsonMovieResponse);
+            jsonMovieResponse = run(builder.toString());
+            movieDataModelArrayList = parseJsonResponse(jsonMovieResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e)
-        {
-            Log.d("Exception Raised : ",e.toString());
-        }
-        finally {
-            if(urlConnection != null)
-            {
-                urlConnection.disconnect();
-            }
-
-            if(readMovieData != null)
-            {
-                try {
-                    readMovieData.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return null;
+        return movieDataModelArrayList;
     }
 
     private ArrayList<MovieDataModel> parseJsonResponse(String jsonData) throws JSONException
@@ -123,6 +78,15 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         }
 
         return movieDataItems;
+    }
+
+    String run(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        return response.body().string();
     }
 
     @Override
