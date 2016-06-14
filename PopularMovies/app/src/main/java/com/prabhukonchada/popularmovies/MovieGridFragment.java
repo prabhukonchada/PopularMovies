@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,7 +58,6 @@ public class MovieGridFragment extends Fragment implements OnDataUpdateListener{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Call :","onCreate");
         preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key), getString(R.string.default_preference_of_user));
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_list_key))) {
             retrieveMovieDataFromNetworkAsyncTaskObject = new RetrieveMovieDataFromNetwork(getActivity());
@@ -96,7 +94,6 @@ public class MovieGridFragment extends Fragment implements OnDataUpdateListener{
 
     @Override
     public void onUpdate(ArrayList<MovieDataModel> movieDataModelArrayList) {
-        Log.d("Update :","update");
         setMovieDataModelArrayList(movieDataModelArrayList);
         movieGridAdapter.setMovieDataModelArrayList(movieDataModelArrayList);
         movieGridAdapter.notifyDataSetChanged();
