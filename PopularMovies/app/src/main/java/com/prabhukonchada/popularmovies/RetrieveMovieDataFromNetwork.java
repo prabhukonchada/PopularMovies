@@ -24,16 +24,17 @@ import java.util.ArrayList;
 public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieDataModel>> {
 
     Context context;
-    OnDataUpdateListener listener;
+    String TAG = "Async Task :";
 
     public RetrieveMovieDataFromNetwork(Context context)
     {
         this.context = context;
-        Log.d("Async Task :","Executed");
+        Log.d(TAG, "RetrieveMovieDataFromNetwork: Constructor");
     }
 
     @Override
     protected ArrayList<MovieDataModel> doInBackground(String... sortPreferenceKey) {
+        Log.d(TAG, "doInBackground: Task");
 
         Uri.Builder builder = Uri.parse((String) context.getString(R.string.the_movie_db_url)).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter(context.getString(R.string.api_key_string),BuildConfig.MOVIE_DB_API_KEY);
         HttpURLConnection urlConnection=null;
@@ -124,15 +125,9 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         return movieDataItems;
     }
 
-    public void setUpdateListener(OnDataUpdateListener listener) {
-        this.listener = listener;
-    }
-
     @Override
     protected void onPostExecute(ArrayList<MovieDataModel> movieDataModelArrayList) {
-        if(listener != null)
-        {
-            listener.onUpdate(movieDataModelArrayList);
-        }
+        Log.d(TAG, "onPostExecute: Post Event Result");
+        DataBus.getInstance().post(new DataRetrivalResultEvent(movieDataModelArrayList));
     }
 }

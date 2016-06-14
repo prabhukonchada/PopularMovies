@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,19 +16,21 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.squareup.otto.Subscribe;
+
 import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieGridFragment extends Fragment implements OnDataUpdateListener{
+public class MovieGridFragment extends Fragment{
 
     ArrayList<MovieDataModel> movieDataModelArrayList;
-    RetrieveMovieDataFromNetwork retrieveMovieDataFromNetworkAsyncTaskObject;
     MovieGridAdapter movieGridAdapter;
     GridView moviesGrid;
     String preferenceValue;
+    String TAG = "MovieGridFragment";
 
     public MovieGridFragment() {
         // Required empty public constructor
@@ -36,6 +39,7 @@ public class MovieGridFragment extends Fragment implements OnDataUpdateListener{
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState: Fragment");
         outState.putParcelableArrayList(getString(R.string.parcelable_movie_model_list_key), getMovieDataModelArrayList());
         super.onSaveInstanceState(outState);
     }
@@ -56,13 +60,31 @@ public class MovieGridFragment extends Fragment implements OnDataUpdateListener{
     }
 
     @Override
+    public void onResume() {
+        Log.d(TAG, "onResume: Fragment");
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG, "onStop: Fragment");
+        super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "onPause: Fragment");
+        super.onPause();
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: Fragment");
         super.onCreate(savedInstanceState);
         preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key), getString(R.string.default_preference_of_user));
+        DataBus.getInstance().register(this);
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_list_key))) {
-            retrieveMovieDataFromNetworkAsyncTaskObject = new RetrieveMovieDataFromNetwork(getActivity());
-            retrieveMovieDataFromNetworkAsyncTaskObject.setUpdateListener(this);
-            retrieveMovieDataFromNetworkAsyncTaskObject.execute(preferenceValue);
+            new RetrieveMovieDataFromNetwork(getActivity()).execute(preferenceValue);
         }
         else
         {
@@ -71,9 +93,23 @@ public class MovieGridFragment extends Fragment implements OnDataUpdateListener{
     }
 
     @Override
+    public void onStart() {
+        Log.d(TAG, "onStart: Fragment");
+        super.onStart();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy: Fragment");
+        DataBus.getInstance().unregister(this);
+        super.onDestroy();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.d(TAG, "onCreateView: Fragment");
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
         moviesGrid = (GridView) rootView.findViewById(R.id.movieGrid);
         AdapterView.OnItemClickListener movieGridListener = new AdapterView.OnItemClickListener() {
@@ -89,12 +125,23 @@ public class MovieGridFragment extends Fragment implements OnDataUpdateListener{
         moviesGrid.setAdapter(movieGridAdapter);
         moviesGrid.setOnItemClickListener(movieGridListener);
 
+        if(savedInstanceState != null)
+        {
+            setListValuesAndNotify();
+        }
+
         return rootView;
     }
 
-    @Override
-    public void onUpdate(ArrayList<MovieDataModel> movieDataModelArrayList) {
-        setMovieDataModelArrayList(movieDataModelArrayList);
+    @Subscribe public void onDataRetrieved(DataRetrivalResultEvent event )
+    {
+        Log.d(TAG, "onDataRetrieved: Subscription");
+        setMovieDataModelArrayList(event.getMovieDataModelArrayList());
+        setListValuesAndNotify();
+    }
+
+    private void setListValuesAndNotify()
+    {
         movieGridAdapter.setMovieDataModelArrayList(movieDataModelArrayList);
         movieGridAdapter.notifyDataSetChanged();
     }
