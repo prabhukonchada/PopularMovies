@@ -16,12 +16,11 @@ import java.util.ArrayList;
  * you can contact me at : prabhukonchada@gmail.com
  */
 public class MovieGridAdapter extends BaseAdapter {
-    ArrayList<MovieDataModel> movieDataModelArrayList;
+    ArrayList<MovieDataModel> movieDataModelArrayList = new ArrayList<>();
     private Context applicationContext;
 
-    public MovieGridAdapter(Context applicationContext, ArrayList<MovieDataModel> movieDataModelArrayList) {
+    public MovieGridAdapter(Context applicationContext) {
         this.applicationContext = applicationContext;
-        this.movieDataModelArrayList = movieDataModelArrayList;
     }
 
     public void setMovieDataModelArrayList(ArrayList<MovieDataModel> movieDataModelArrayList) {

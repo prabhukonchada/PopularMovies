@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,15 +17,18 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieGridFragment extends Fragment {
+public class MovieGridFragment extends Fragment implements OnDataUpdateListener{
 
     ArrayList<MovieDataModel> movieDataModelArrayList;
+    RetrieveMovieDataFromNetwork retrieveMovieDataFromNetworkAsyncTaskObject;
+    MovieGridAdapter movieGridAdapter;
+    GridView moviesGrid;
+    String preferenceValue;
 
     public MovieGridFragment() {
         // Required empty public constructor
@@ -33,7 +37,7 @@ public class MovieGridFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(getString(R.string.parcelable_movie_model_list_key), movieDataModelArrayList);
+        outState.putParcelableArrayList(getString(R.string.parcelable_movie_model_list_key), getMovieDataModelArrayList());
         super.onSaveInstanceState(outState);
     }
 
@@ -49,27 +53,23 @@ public class MovieGridFragment extends Fragment {
             Intent showMovieSortPreference = new Intent(getActivity(), SortMoviesPreferenceActivity.class);
             startActivity(showMovieSortPreference);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("Call :","onCreate");
+        preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key), getString(R.string.default_preference_of_user));
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_list_key))) {
-            String preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key), getString(R.string.default_preference_of_user));
-            try {
-                movieDataModelArrayList = new RetrieveMovieDataFromNetwork(getActivity()).execute(preferenceValue).get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        } else {
+            retrieveMovieDataFromNetworkAsyncTaskObject = new RetrieveMovieDataFromNetwork(getActivity());
+            retrieveMovieDataFromNetworkAsyncTaskObject.setUpdateListener(this);
+            retrieveMovieDataFromNetworkAsyncTaskObject.execute(preferenceValue);
+        }
+        else
+        {
             movieDataModelArrayList = savedInstanceState.getParcelableArrayList(getString(R.string.parcelable_movie_model_list_key));
         }
-
     }
 
     @Override
@@ -77,7 +77,7 @@ public class MovieGridFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
-        GridView moviesGrid = (GridView) rootView.findViewById(R.id.movieGrid);
+        moviesGrid = (GridView) rootView.findViewById(R.id.movieGrid);
         AdapterView.OnItemClickListener movieGridListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -87,12 +87,26 @@ public class MovieGridFragment extends Fragment {
                 startActivity(navigateToMovieDetail);
             }
         };
-        if (movieDataModelArrayList.size() > 0) {
-            MovieGridAdapter movieGridAdapter = new MovieGridAdapter(getActivity(), movieDataModelArrayList);
-            moviesGrid.setAdapter(movieGridAdapter);
-            moviesGrid.setOnItemClickListener(movieGridListener);
-        }
+        movieGridAdapter = new MovieGridAdapter(getActivity());
+        moviesGrid.setAdapter(movieGridAdapter);
+        moviesGrid.setOnItemClickListener(movieGridListener);
+
         return rootView;
     }
 
+    @Override
+    public void onUpdate(ArrayList<MovieDataModel> movieDataModelArrayList) {
+        Log.d("Update :","update");
+        setMovieDataModelArrayList(movieDataModelArrayList);
+        movieGridAdapter.setMovieDataModelArrayList(movieDataModelArrayList);
+        movieGridAdapter.notifyDataSetChanged();
+    }
+
+    public ArrayList<MovieDataModel> getMovieDataModelArrayList() {
+        return movieDataModelArrayList;
+    }
+
+    public void setMovieDataModelArrayList(ArrayList<MovieDataModel> movieDataModelArrayList) {
+        this.movieDataModelArrayList = movieDataModelArrayList;
+    }
 }

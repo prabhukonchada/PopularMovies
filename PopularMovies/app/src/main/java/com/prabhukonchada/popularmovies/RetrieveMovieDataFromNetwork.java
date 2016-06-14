@@ -21,13 +21,15 @@ import java.util.ArrayList;
  * Created by Prabhu Konchada on 09/06/16
  * you can contact me at : prabhukonchada@gmail.com
  */
-public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieDataModel>>{
+public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieDataModel>> {
 
     Context context;
+    OnDataUpdateListener listener;
 
     public RetrieveMovieDataFromNetwork(Context context)
     {
         this.context = context;
+        Log.d("Async Task :","Executed");
     }
 
     @Override
@@ -122,4 +124,15 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         return movieDataItems;
     }
 
+    public void setUpdateListener(OnDataUpdateListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    protected void onPostExecute(ArrayList<MovieDataModel> movieDataModelArrayList) {
+        if(listener != null)
+        {
+            listener.onUpdate(movieDataModelArrayList);
+        }
+    }
 }
