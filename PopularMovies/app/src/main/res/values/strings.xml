@@ -43,4 +43,6 @@
 
     <string name="parcelable_movie_model_list_key">MovieDataList</string>
     <string name="parcelable_movie_model_object">MovieObject</string>
+
+    <string name="movies_fragment_tag">MoviesGridFragment</string>
 </resources>

@@ -23,7 +23,7 @@ import okhttp3.Response;
 public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieDataModel>> {
 
     Context context;
-    String TAG = "Async Task :";
+    String TAG = "Movie Task :";
     OkHttpClient client = new OkHttpClient();
     ArrayList<MovieDataModel> movieDataModelArrayList;
 
@@ -38,7 +38,7 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         Log.d(TAG, "doInBackground: Task");
 
         Uri.Builder builder = Uri.parse((String) context.getString(R.string.the_movie_db_url)).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter(context.getString(R.string.api_key_string),BuildConfig.MOVIE_DB_API_KEY);
-        String jsonMovieResponse = null;
+        String jsonMovieResponse;
         try {
             jsonMovieResponse = run(builder.toString());
             movieDataModelArrayList = parseJsonResponse(jsonMovieResponse);
@@ -50,6 +50,8 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
 
     private ArrayList<MovieDataModel> parseJsonResponse(String jsonData) throws JSONException
     {
+
+
         final String RESULTS_LIST = "results";
         final String MOVIE_OVERVIEW = "overview";
         final String MOVIE_TITLE = "title";
@@ -92,6 +94,11 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
     @Override
     protected void onPostExecute(ArrayList<MovieDataModel> movieDataModelArrayList) {
         Log.d(TAG, "onPostExecute: Post Event Result");
+        /**
+         * FIXME
+         * For Reviewer :
+         * Using a Bus from the library or a listener would be efficient to transfer data from async task to activity without any leaks ??
+         */
         DataBus.getInstance().post(new DataRetrivalResultEvent(movieDataModelArrayList));
     }
 }

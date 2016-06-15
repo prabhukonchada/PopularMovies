@@ -9,6 +9,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 public class MoviesActivity extends AppCompatActivity {
 
     String TAG = "Movies Activity :";
+    MovieGridFragment movieGridFragment;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,15 +19,25 @@ public class MoviesActivity extends AppCompatActivity {
 
         // Initialise Fresco Library
         Fresco.initialize(this);
+        
+        // Handling orientation change
         if(savedInstanceState == null) {
-            MovieGridFragment movieGridFragment = new MovieGridFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.container,movieGridFragment,"TAG").commit();
+            movieGridFragment = new MovieGridFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.container,movieGridFragment,getString(R.string.movies_fragment_tag)).commit();
             Log.d(TAG, "onCreate: NEW FRAGMENT");
         }
         else
         {
+            /**
+             * FIXME
+             * For Reviewer :
+             * Though I replace it or not the fragment is automatically created and I dont know why ?
+             */
 
+            movieGridFragment = (MovieGridFragment)getSupportFragmentManager().getFragment(savedInstanceState,getString(R.string.movies_fragment_tag));
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,movieGridFragment,getString(R.string.movies_fragment_tag)).commit();
             Log.d(TAG,savedInstanceState.toString());
+            Log.d(TAG, "onCreate: saved instance is not null");
         }
 
     }
@@ -34,8 +45,8 @@ public class MoviesActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState: Activity");
-
         super.onSaveInstanceState(outState);
+        getSupportFragmentManager().putFragment(outState, "TAG", movieGridFragment);
     }
 
     @Override
