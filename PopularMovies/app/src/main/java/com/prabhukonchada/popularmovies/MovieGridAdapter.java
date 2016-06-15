@@ -16,14 +16,14 @@ import java.util.ArrayList;
  * you can contact me at : prabhukonchada@gmail.com
  */
 public class MovieGridAdapter extends BaseAdapter {
-    ArrayList<MovieDataModel> movieDataModelArrayList = new ArrayList<>();
+    ArrayList<MovieBean> movieDataModelArrayList = new ArrayList<>();
     private Context applicationContext;
 
     public MovieGridAdapter(Context applicationContext) {
         this.applicationContext = applicationContext;
     }
 
-    public void setMovieDataModelArrayList(ArrayList<MovieDataModel> movieDataModelArrayList) {
+    public void setMovieDataModelArrayList(ArrayList<MovieBean> movieDataModelArrayList) {
         this.movieDataModelArrayList = movieDataModelArrayList;
     }
 
@@ -58,7 +58,8 @@ public class MovieGridAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.moviePosterImage.setImageURI(Uri.parse(movieDataModelArrayList.get(position).getMoviePosterImageThumbnail()));
+        StringBuffer posterUrl = new StringBuffer(applicationContext.getString(R.string.image_url_small));
+        holder.moviePosterImage.setImageURI(Uri.parse(posterUrl.append(movieDataModelArrayList.get(position).getPoster_path()).toString()));
         return convertView;
     }
 

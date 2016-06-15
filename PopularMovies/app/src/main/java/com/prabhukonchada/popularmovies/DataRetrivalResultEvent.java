@@ -8,14 +8,14 @@ import java.util.ArrayList;
  */
 public class DataRetrivalResultEvent {
 
-    private ArrayList<MovieDataModel> movieDataModelArrayList;
+    private ArrayList<MovieBean> movieDataModelArrayList;
 
-    public DataRetrivalResultEvent(ArrayList<MovieDataModel> movieDataModelArrayList)
+    public DataRetrivalResultEvent(ArrayList<MovieBean> movieDataModelArrayList)
     {
         this.movieDataModelArrayList = movieDataModelArrayList;
     }
 
-    public ArrayList<MovieDataModel> getMovieDataModelArrayList() {
+    public ArrayList<MovieBean> getMovieDataModelArrayList() {
         return movieDataModelArrayList;
     }
 }

@@ -5,9 +5,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONArray;
+import com.google.gson.Gson;
+
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,12 +20,12 @@ import okhttp3.Response;
  * Created by Prabhu Konchada on 09/06/16
  * you can contact me at : prabhukonchada@gmail.com
  */
-public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieDataModel>> {
+public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayList<MovieBean>> {
 
     Context context;
     String TAG = "Movie Task :";
     OkHttpClient client = new OkHttpClient();
-    ArrayList<MovieDataModel> movieDataModelArrayList;
+    ArrayList<MovieBean> movieDataModelArrayList;
 
     public RetrieveMovieDataFromNetwork(Context context)
     {
@@ -34,7 +34,7 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
     }
 
     @Override
-    protected ArrayList<MovieDataModel> doInBackground(String... sortPreferenceKey) {
+    protected ArrayList<MovieBean> doInBackground(String... sortPreferenceKey) {
         Log.d(TAG, "doInBackground: Task");
 
         Uri.Builder builder = Uri.parse((String) context.getString(R.string.the_movie_db_url)).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter(context.getString(R.string.api_key_string),BuildConfig.MOVIE_DB_API_KEY);
@@ -49,39 +49,25 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         return movieDataModelArrayList;
     }
 
-    private ArrayList<MovieDataModel> parseJsonResponse(String jsonData) throws JSONException
+    private ArrayList<MovieBean> parseJsonResponse(String jsonData) throws JSONException
     {
-        final String RESULTS_LIST = "results";
-        final String MOVIE_OVERVIEW = "overview";
-        final String MOVIE_TITLE = "title";
-        final String MOVIE_IMAGE_THUMBNAIL = "poster_path";
-        final String MOVIE_IMAGE = "backdrop_path";
-        final String VOTE_AVERAGE = "vote_average";
-        final String RELEASE_DATE = "release_date";
+        Gson gson = new Gson();
+        MovieResultsBean movieResults = gson.fromJson(jsonData,MovieResultsBean.class);
+        ArrayList<MovieBean> results = movieResults.getResults();
+        for (int i = 0; i < results.size() ; i++) {
+            Log.d(TAG, "parseJsonResponse: movie original title :"+results.get(i).getOriginal_title());
+            Log.d(TAG, "parseJsonResponse: movieposter :"+results.get(i).getPoster_path());
+            Log.d(TAG, "parseJsonResponse: movie backdrop :"+results.get(i).getBackdrop_path());
+            Log.d(TAG, "parseJsonResponse: movie title :"+results.get(i).getTitle());
+            Log.d(TAG, "parseJsonResponse: release date :"+results.get(i).getRelease_date());
+            Log.d(TAG, "parseJsonResponse: movie vote :"+ String.valueOf(results.get(i).getVote_average()));
 
-
-        ArrayList<MovieDataModel> movieDataItems = new ArrayList<>();
-
-        JSONObject moviesJsonObject = new JSONObject(jsonData);
-        JSONArray movieResults = moviesJsonObject.getJSONArray(RESULTS_LIST);
-        for (int i = 0; i < movieResults.length(); i++) {
-            StringBuffer IMAGE_URL_SMALL = new StringBuffer(context.getString(R.string.image_url_small));
-            StringBuffer IMAGE_URL_LARGE = new StringBuffer(context.getString(R.string.image_url_large));
-            JSONObject jsonMovieDataObject = movieResults.getJSONObject(i);
-            MovieDataModel movieDataObject = new MovieDataModel();
-            movieDataObject.setMovieName(jsonMovieDataObject.getString(MOVIE_TITLE));
-            movieDataObject.setMoviePlotSynopsis(jsonMovieDataObject.getString(MOVIE_OVERVIEW));
-            movieDataObject.setMovieImage(IMAGE_URL_LARGE.append(jsonMovieDataObject.getString(MOVIE_IMAGE)).toString());
-            movieDataObject.setReleaseDate(jsonMovieDataObject.getString(RELEASE_DATE));
-            movieDataObject.setVoteAverage(jsonMovieDataObject.getString(VOTE_AVERAGE));
-            movieDataObject.setMoviePosterImageThumbnail((IMAGE_URL_SMALL.append(jsonMovieDataObject.getString(MOVIE_IMAGE_THUMBNAIL))).toString());
-            movieDataItems.add(movieDataObject);
+            Log.d(TAG, "parseJsonResponse: \n\n");
         }
-
-        return movieDataItems;
+        return movieResults.getResults();
     }
 
-    String run(String url) throws IOException {
+    private String run(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -91,7 +77,7 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
     }
 
     @Override
-    protected void onPostExecute(ArrayList<MovieDataModel> movieDataModelArrayList) {
+    protected void onPostExecute(ArrayList<MovieBean> movieDataModelArrayList) {
         /**
          * FIXME
          * For Reviewer :

@@ -26,7 +26,7 @@ import java.util.ArrayList;
  */
 public class MovieGridFragment extends Fragment{
 
-    ArrayList<MovieDataModel> movieDataModelArrayList;
+    ArrayList<MovieBean> movieDataModelArrayList;
     MovieGridAdapter movieGridAdapter;
     GridView moviesGrid;
     String preferenceValue;
@@ -115,7 +115,7 @@ public class MovieGridFragment extends Fragment{
         AdapterView.OnItemClickListener movieGridListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MovieDataModel movieObject = (MovieDataModel) parent.getItemAtPosition(position);
+                MovieBean movieObject = (MovieBean) parent.getItemAtPosition(position);
                 Intent navigateToMovieDetail = new Intent(getActivity(), MovieDetailActivity.class);
                 navigateToMovieDetail.putExtra(getString(R.string.movie_object), movieObject);
                 startActivity(navigateToMovieDetail);
@@ -146,11 +146,11 @@ public class MovieGridFragment extends Fragment{
         movieGridAdapter.notifyDataSetChanged();
     }
 
-    public ArrayList<MovieDataModel> getMovieDataModelArrayList() {
+    public ArrayList<MovieBean> getMovieDataModelArrayList() {
         return movieDataModelArrayList;
     }
 
-    public void setMovieDataModelArrayList(ArrayList<MovieDataModel> movieDataModelArrayList) {
+    public void setMovieDataModelArrayList(ArrayList<MovieBean> movieDataModelArrayList) {
         this.movieDataModelArrayList = movieDataModelArrayList;
     }
 }

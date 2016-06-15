@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,8 @@ public class MovieDetailActivityFragment extends Fragment {
     TextView movieReleaseDate;
     TextView movieSynopsis;
     SimpleDraweeView movieBackgroundImage;
-    MovieDataModel movieObject;
+    MovieBean movieObject;
+    String TAG = "Movie Detail :";
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -45,18 +47,25 @@ public class MovieDetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         StringBuffer IMAGE_URL = new StringBuffer(getString(R.string.image_url_large));
 
-        StringBuffer voteAverage = new StringBuffer(movieObject.getVoteAverage());
+        Log.d(TAG, "onCreateView: movie name :"+movieObject.getTitle());
+        Log.d(TAG, "onCreateView: movie Synopsis :"+movieObject.getOverview());
+        Log.d(TAG, "onCreateView: movie release date :"+movieObject.getRelease_date());
+        Log.d(TAG, "onCreateView: movie path :"+movieObject.getBackdrop_path());
+        Log.d(TAG, "onCreateView: vote avg :"+String.valueOf(movieObject.getVote_average()));
+        Log.d(TAG, "onCreateView: original title :"+movieObject.getOriginal_title());
+
+        StringBuffer voteAverage = new StringBuffer(String.valueOf(movieObject.getVote_average()));
         movieTitle = (TextView) rootView.findViewById(R.id.movieTitle);
         movieRating = (TextView) rootView.findViewById(R.id.movieRating);
         movieReleaseDate = (TextView) rootView.findViewById(R.id.movieReleaseDate);
         movieSynopsis = (TextView) rootView.findViewById(R.id.movieSynopsis);
         movieBackgroundImage = (SimpleDraweeView) rootView.findViewById(R.id.movieBackgroundImage);
 
-        movieTitle.setText(movieObject.getMovieName());
+        movieTitle.setText(movieObject.getTitle());
         movieRating.setText(voteAverage.append(getString(R.string.vote_average_max)));
-        movieReleaseDate.setText(movieObject.getReleaseDate());
-        movieSynopsis.setText(movieObject.getMoviePlotSynopsis());
-        String imageUrl = IMAGE_URL.append(movieObject.getMovieImage()).toString();
+        movieReleaseDate.setText(movieObject.getRelease_date());
+        movieSynopsis.setText(movieObject.getOverview());
+        String imageUrl = IMAGE_URL.append(movieObject.getBackdrop_path()).toString();
         movieBackgroundImage.setImageURI(Uri.parse(imageUrl));
         return rootView;
 
