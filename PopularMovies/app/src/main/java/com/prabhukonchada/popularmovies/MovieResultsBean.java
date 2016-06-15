@@ -10,19 +10,7 @@ public class MovieResultsBean {
     public ArrayList<MovieBean> results;
     public MovieBean moviesBean;
 
-    public MovieBean getMoviesBean() {
-        return moviesBean;
-    }
-
-    public void setMoviesBean(MovieBean moviesBean) {
-        this.moviesBean = moviesBean;
-    }
-
     public ArrayList<MovieBean> getResults() {
         return results;
-    }
-
-    public void setResults(ArrayList<MovieBean> results) {
-        this.results = results;
     }
 }
