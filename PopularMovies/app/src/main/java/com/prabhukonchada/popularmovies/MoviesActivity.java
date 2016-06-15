@@ -46,7 +46,7 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState: Activity");
         super.onSaveInstanceState(outState);
-        getSupportFragmentManager().putFragment(outState, "TAG", movieGridFragment);
+        getSupportFragmentManager().putFragment(outState, getString(R.string.movies_fragment_tag), movieGridFragment);
     }
 
     @Override

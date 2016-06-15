@@ -41,6 +41,7 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         String jsonMovieResponse;
         try {
             jsonMovieResponse = run(builder.toString());
+            Log.d(TAG, "doInBackground: json response"+jsonMovieResponse);
             movieDataModelArrayList = parseJsonResponse(jsonMovieResponse);
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,8 +51,6 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
 
     private ArrayList<MovieDataModel> parseJsonResponse(String jsonData) throws JSONException
     {
-
-
         final String RESULTS_LIST = "results";
         final String MOVIE_OVERVIEW = "overview";
         final String MOVIE_TITLE = "title";
@@ -93,12 +92,12 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
 
     @Override
     protected void onPostExecute(ArrayList<MovieDataModel> movieDataModelArrayList) {
-        Log.d(TAG, "onPostExecute: Post Event Result");
         /**
          * FIXME
          * For Reviewer :
          * Using a Bus from the library or a listener would be efficient to transfer data from async task to activity without any leaks ??
          */
+        if(movieDataModelArrayList != null)
         DataBus.getInstance().post(new DataRetrivalResultEvent(movieDataModelArrayList));
     }
 }
