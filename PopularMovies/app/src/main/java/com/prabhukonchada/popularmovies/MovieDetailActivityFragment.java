@@ -47,13 +47,6 @@ public class MovieDetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         StringBuffer IMAGE_URL = new StringBuffer(getString(R.string.image_url_large));
 
-        Log.d(TAG, "onCreateView: movie name :"+movieObject.getTitle());
-        Log.d(TAG, "onCreateView: movie Synopsis :"+movieObject.getOverview());
-        Log.d(TAG, "onCreateView: movie release date :"+movieObject.getRelease_date());
-        Log.d(TAG, "onCreateView: movie path :"+movieObject.getBackdrop_path());
-        Log.d(TAG, "onCreateView: vote avg :"+String.valueOf(movieObject.getVote_average()));
-        Log.d(TAG, "onCreateView: original title :"+movieObject.getOriginal_title());
-
         StringBuffer voteAverage = new StringBuffer(String.valueOf(movieObject.getVote_average()));
         movieTitle = (TextView) rootView.findViewById(R.id.movieTitle);
         movieRating = (TextView) rootView.findViewById(R.id.movieRating);

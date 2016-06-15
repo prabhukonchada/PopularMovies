@@ -54,16 +54,6 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         Gson gson = new Gson();
         MovieResultsBean movieResults = gson.fromJson(jsonData,MovieResultsBean.class);
         ArrayList<MovieBean> results = movieResults.getResults();
-        for (int i = 0; i < results.size() ; i++) {
-            Log.d(TAG, "parseJsonResponse: movie original title :"+results.get(i).getOriginal_title());
-            Log.d(TAG, "parseJsonResponse: movieposter :"+results.get(i).getPoster_path());
-            Log.d(TAG, "parseJsonResponse: movie backdrop :"+results.get(i).getBackdrop_path());
-            Log.d(TAG, "parseJsonResponse: movie title :"+results.get(i).getTitle());
-            Log.d(TAG, "parseJsonResponse: release date :"+results.get(i).getRelease_date());
-            Log.d(TAG, "parseJsonResponse: movie vote :"+ String.valueOf(results.get(i).getVote_average()));
-
-            Log.d(TAG, "parseJsonResponse: \n\n");
-        }
         return movieResults.getResults();
     }
 
