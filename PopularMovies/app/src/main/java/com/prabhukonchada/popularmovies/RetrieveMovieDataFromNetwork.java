@@ -76,4 +76,5 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         if(movieDataModelArrayList != null)
         DataBus.getInstance().post(new DataRetrivalResultEvent(movieDataModelArrayList));
     }
+
 }

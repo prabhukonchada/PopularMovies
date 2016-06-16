@@ -23,7 +23,7 @@ public class MoviesActivity extends AppCompatActivity {
         // Handling orientation change
         if(savedInstanceState == null) {
             movieGridFragment = new MovieGridFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.container,movieGridFragment,getString(R.string.movies_fragment_tag)).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.container,movieGridFragment).commit();
             Log.d(TAG, "onCreate: NEW FRAGMENT");
         }
     }
@@ -69,4 +69,5 @@ public class MoviesActivity extends AppCompatActivity {
         Log.d(TAG, "onResume: Activity");
         super.onResume();
     }
+
 }

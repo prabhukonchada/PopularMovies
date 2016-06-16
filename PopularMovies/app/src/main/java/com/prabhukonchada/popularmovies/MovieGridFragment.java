@@ -1,7 +1,10 @@
 package com.prabhukonchada.popularmovies;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
@@ -84,7 +88,13 @@ public class MovieGridFragment extends Fragment{
         preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key), getString(R.string.default_preference_of_user));
         DataBus.getInstance().register(this);
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_list_key))) {
-            new RetrieveMovieDataFromNetwork(getActivity()).execute(preferenceValue);
+            if(isOnline(getActivity())) {
+                new RetrieveMovieDataFromNetwork(getActivity()).execute(preferenceValue);
+            }
+            else
+            {
+                Toast.makeText(getActivity(),"No Internet Connection",Toast.LENGTH_LONG).show();
+            }
         }
         else
         {
@@ -152,5 +162,12 @@ public class MovieGridFragment extends Fragment{
 
     public void setMovieDataModelArrayList(ArrayList<MovieBean> movieDataModelArrayList) {
         this.movieDataModelArrayList = movieDataModelArrayList;
+    }
+
+    private boolean isOnline(Context context) {
+        ConnectivityManager mngr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = mngr.getActiveNetworkInfo();
+
+        return !(info == null || (info.getState() != NetworkInfo.State.CONNECTED));
     }
 }
