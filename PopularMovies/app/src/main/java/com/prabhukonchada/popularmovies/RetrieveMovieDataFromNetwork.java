@@ -68,11 +68,6 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
 
     @Override
     protected void onPostExecute(ArrayList<MovieBean> movieDataModelArrayList) {
-        /**
-         * FIXME
-         * For Reviewer :
-         * Using a Bus from the library or a listener would be efficient to transfer data from async task to activity without any leaks ??
-         */
         if(movieDataModelArrayList != null)
         DataBus.getInstance().post(new DataRetrivalResultEvent(movieDataModelArrayList));
     }
