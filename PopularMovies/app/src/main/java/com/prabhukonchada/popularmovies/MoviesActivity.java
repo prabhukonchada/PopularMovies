@@ -26,38 +26,18 @@ public class MoviesActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.container,movieGridFragment,getString(R.string.movies_fragment_tag)).commit();
             Log.d(TAG, "onCreate: NEW FRAGMENT");
         }
-        else
-        {
-            /**
-             * FIXME
-             * For Reviewer :
-             * Though I replace it or not the fragment is automatically created and I dont know why ?
-             */
-
-            movieGridFragment = (MovieGridFragment)getSupportFragmentManager().getFragment(savedInstanceState,getString(R.string.movies_fragment_tag));
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,movieGridFragment,getString(R.string.movies_fragment_tag)).commit();
-            Log.d(TAG,savedInstanceState.toString());
-            Log.d(TAG, "onCreate: saved instance is not null");
-        }
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState: Activity");
         super.onSaveInstanceState(outState);
-        getSupportFragmentManager().putFragment(outState, getString(R.string.movies_fragment_tag), movieGridFragment);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         Log.d(TAG, "onRestoreInstanceState: Activity");
         super.onRestoreInstanceState(savedInstanceState);
-        if(savedInstanceState == null)
-        {
-            // Add MovieGridFragment to this activity
-
-        }
     }
 
     @Override
