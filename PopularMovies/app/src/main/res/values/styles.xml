@@ -32,11 +32,10 @@
         <item name="placeholderImageScaleType">fitCenter</item>
     </style>
 
-    <style name="movie_back_ground_image_style" parent="image_style">
-        <item name="android:layout_height">300dp</item>
-        <item name="android:layout_width">150dp</item>
-        <item name="android:layout_margin">12dp</item>
-        <item name="viewAspectRatio">1.33</item>
+    <style name="movie_detail_poster_style" parent="image_style">
+        <item name="android:layout_height">@dimen/movie_poster_height</item>
+        <item name="android:layout_width">@dimen/movie_poster_width</item>
+        <item name="android:layout_margin">@dimen/linear_layout_vertical_margin</item>
     </style>
 
     <style name="movie_poster_image_style" parent="image_style">
@@ -66,7 +65,6 @@
     </style>
 
     <style name="movie_release_text_view" parent="text_view_style">
-        <item name="android:gravity">right</item>
         <item name="android:textSize">@dimen/movie_release_date</item>
     </style>
 
@@ -75,6 +73,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:textSize">@dimen/movie_synopsis_text_size</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:layout_margin">@dimen/linear_layout_horizontal_margin</item>
     </style>
 
 

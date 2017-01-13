@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -24,7 +25,7 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
 
     Context context;
     String TAG = "Movie Task :";
-    OkHttpClient client = new OkHttpClient();
+    OkHttpClient client = new OkHttpClient.Builder().addNetworkInterceptor(new StethoInterceptor()).build();
     ArrayList<MovieBean> movieDataModelArrayList;
 
     public RetrieveMovieDataFromNetwork(Context context)
@@ -62,7 +63,6 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-
         Response response = client.newCall(request).execute();
         return response.body().string();
     }

@@ -13,34 +13,39 @@
                 style="@style/title_text_view_style"
                 tools:text="Sardar Gabbar Singh" />
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/movieBackgroundImage"
-                style="@style/movie_back_ground_image_style" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/movieBackgroundImage"
+                    style="@style/movie_detail_poster_style" />
 
+                <LinearLayout style="@style/linear_layout_containing_rating_release_date">
 
-            <LinearLayout style="@style/linear_layout_containing_rating_release_date">
+                    <LinearLayout style="@style/linear_layout_vertical_match_all">
 
-                <LinearLayout style="@style/linear_layout_horizontal_match_all">
+                        <TextView
+                            android:id="@+id/movieRating"
+                            style="@style/movie_rating_text_view"
+                            tools:text="8.1/10"/>
 
-                    <TextView
-                        android:id="@+id/movieRating"
-                        style="@style/movie_rating_text_view"
-                        tools:text="8.1/10"/>
+                        <TextView
+                            android:id="@+id/movieReleaseDate"
+                            style="@style/movie_release_text_view"
+                            tools:text="2016"/>
 
-                    <TextView
-                        android:id="@+id/movieReleaseDate"
-                        style="@style/movie_release_text_view"
-                        tools:text="2016 - 11 - 14"/>
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/movieSynopsis"
-                    style="@style/movie_synopsis_text_view"
-                    tools:text = "The Synopsis goes here ..."/>
-
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/movieSynopsis"
+                style="@style/movie_synopsis_text_view"
+                tools:text = "The Synopsis goes here ..."/>
 
         </LinearLayout>
 
