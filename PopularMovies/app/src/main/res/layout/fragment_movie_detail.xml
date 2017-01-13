@@ -17,6 +17,8 @@
                 android:id="@+id/movieBackgroundImage"
                 style="@style/movie_back_ground_image_style" />
 
+
+
             <LinearLayout style="@style/linear_layout_containing_rating_release_date">
 
                 <LinearLayout style="@style/linear_layout_horizontal_match_all">

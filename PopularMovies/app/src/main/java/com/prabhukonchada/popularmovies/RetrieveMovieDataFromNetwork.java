@@ -38,6 +38,7 @@ public class RetrieveMovieDataFromNetwork extends AsyncTask<String,Void,ArrayLis
         Log.d(TAG, "doInBackground: Task");
 
         Uri.Builder builder = Uri.parse((String) context.getString(R.string.the_movie_db_url)).buildUpon().appendPath(sortPreferenceKey[0]).appendQueryParameter(context.getString(R.string.api_key_string),BuildConfig.MOVIE_DB_API_KEY);
+        Log.d("Hitting_Url",builder.toString());
         String jsonMovieResponse;
         try {
             jsonMovieResponse = run(builder.toString());

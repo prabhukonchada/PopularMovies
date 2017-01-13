@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +57,7 @@ public class MovieDetailActivityFragment extends Fragment {
         movieRating.setText(voteAverage.append(getString(R.string.vote_average_max)));
         movieReleaseDate.setText(movieObject.getRelease_date());
         movieSynopsis.setText(movieObject.getOverview());
-        String imageUrl = IMAGE_URL.append(movieObject.getBackdrop_path()).toString();
+        String imageUrl = IMAGE_URL.append(movieObject.getPoster_path()).toString();
         movieBackgroundImage.setImageURI(Uri.parse(imageUrl));
         return rootView;
 

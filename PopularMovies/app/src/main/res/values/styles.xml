@@ -28,12 +28,14 @@
         <item name="retryImageScaleType">centerCrop</item>
         <item name="progressBarImageScaleType">centerInside</item>
         <item name="progressBarImage">@drawable/progress_bar</item>
-        <item name="placeholderImage">@drawable/placeholder</item>
         <item name="progressBarAutoRotateInterval">1000</item>
         <item name="placeholderImageScaleType">fitCenter</item>
     </style>
 
     <style name="movie_back_ground_image_style" parent="image_style">
+        <item name="android:layout_height">300dp</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_margin">12dp</item>
         <item name="viewAspectRatio">1.33</item>
     </style>
 
