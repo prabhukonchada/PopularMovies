@@ -4,14 +4,15 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="title_padding_dimen">35dp</dimen>
-    <dimen name="title_text_size">30dp</dimen>
-    <dimen name="rating_text_size">36dp</dimen>
-    <dimen name="movie_release_date">20dp</dimen>
+    <dimen name="title_text_size">30sp</dimen>
+    <dimen name="rating_text_size">36sp</dimen>
+    <dimen name="movie_release_date">14sp</dimen>
     <dimen name="text_padding_dimen_left">16dp</dimen>
     <dimen name="movie_synopsis_text_size">16dp</dimen>
     <dimen name="linear_layout_vertical_margin">16dp</dimen>
     <dimen name="linear_layout_horizontal_margin">16dp</dimen>
     <dimen name="movie_poster_height">220dp</dimen>
     <dimen name="movie_poster_width">150dp</dimen>
+    <dimen name="movie_runtime_text_size">20sp</dimen>
 
 </resources>

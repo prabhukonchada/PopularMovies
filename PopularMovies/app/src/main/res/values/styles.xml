@@ -114,4 +114,10 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="movie_runtime_text_view" parent="text_view_style">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/movie_runtime_text_size</item>
+    </style>
+
+
 </resources>
