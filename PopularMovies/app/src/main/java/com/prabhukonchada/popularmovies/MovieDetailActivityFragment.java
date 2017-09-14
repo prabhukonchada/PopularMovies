@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +33,12 @@ public class MovieDetailActivityFragment extends Fragment {
     SeekBar imageScaleSeekbar;
     ArrayList<MovieBean> movieDataModelArrayList;
     MovieBean movieObject;
+    int position;
+
     String TAG = "Movie Detail :";
+
+    public MovieDetailActivityFragment() {
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -43,8 +50,9 @@ public class MovieDetailActivityFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_object))) {
-            movieObject = getActivity().getIntent().getParcelableExtra(getString(R.string.movie_object));
             movieDataModelArrayList = getActivity().getIntent().getParcelableArrayListExtra("test");
+            Log.d("Position",String.valueOf(position));
+            movieObject = movieDataModelArrayList.get(position);
         } else {
             movieObject = savedInstanceState.getParcelable(getString(R.string.parcelable_movie_model_object));
         }

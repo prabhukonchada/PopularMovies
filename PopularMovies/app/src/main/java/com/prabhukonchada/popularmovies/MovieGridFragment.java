@@ -129,6 +129,9 @@ public class MovieGridFragment extends Fragment{
                 Intent navigateToMovieDetail = new Intent(getActivity(), MovieDetailActivity.class);
                 navigateToMovieDetail.putExtra(getString(R.string.movie_object), movieObject);
                 navigateToMovieDetail.putParcelableArrayListExtra("test",getMovieDataModelArrayList());
+                navigateToMovieDetail.putExtra("count",getMovieDataModelArrayList().size());
+                navigateToMovieDetail.putExtra("grid_item_position",position);
+                Log.d("Grid_position",String.valueOf(position));
                 startActivity(navigateToMovieDetail);
             }
         };
