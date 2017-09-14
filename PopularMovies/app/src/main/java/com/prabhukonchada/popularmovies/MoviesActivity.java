@@ -40,34 +40,5 @@ public class MoviesActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
     }
 
-    @Override
-    protected void onStop() {
-        Log.d(TAG, "onStop: Activity");
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG, "onDestroy: Activity");
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onStart() {
-        Log.d(TAG, "onStart: Activity");
-        super.onStart();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d(TAG, "onPause: Activity");
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        Log.d(TAG, "onResume: Activity");
-        super.onResume();
-    }
 
 }
