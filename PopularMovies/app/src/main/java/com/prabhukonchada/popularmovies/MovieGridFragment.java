@@ -19,9 +19,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
-
-import com.squareup.otto.Subscribe;
-
 import java.util.ArrayList;
 
 
@@ -33,7 +30,6 @@ public class MovieGridFragment extends Fragment{
     ArrayList<MovieBean> movieDataModelArrayList;
     MovieGridAdapter movieGridAdapter;
     GridView moviesGrid;
-    String preferenceValue;
     String TAG = "MovieGridFragment";
 
     public MovieGridFragment() {
@@ -55,41 +51,16 @@ public class MovieGridFragment extends Fragment{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.sort_movies) {
-            Intent showMovieSortPreference = new Intent(getActivity(), SortMoviesPreferenceActivity.class);
-            startActivity(showMovieSortPreference);
-        }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onResume() {
-        Log.d(TAG, "onResume: Fragment");
-        super.onResume();
-    }
-
-    @Override
-    public void onStop() {
-        Log.d(TAG, "onStop: Fragment");
-        super.onStop();
-    }
-
-    @Override
-    public void onPause() {
-        Log.d(TAG, "onPause: Fragment");
-        super.onPause();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: Fragment");
         super.onCreate(savedInstanceState);
-        preferenceValue = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(getString(R.string.pref_sort_key), getString(R.string.default_preference_of_user));
-        DataBus.getInstance().register(this);
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_list_key))) {
             if(isOnline(getActivity())) {
-                new RetrieveMovieDataFromNetwork(getActivity()).execute(preferenceValue);
+                setMovieDataModelArrayList(movieDataModelArrayList);
             }
             else
             {
@@ -102,18 +73,6 @@ public class MovieGridFragment extends Fragment{
         }
     }
 
-    @Override
-    public void onStart() {
-        Log.d(TAG, "onStart: Fragment");
-        super.onStart();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.d(TAG, "onDestroy: Fragment");
-        DataBus.getInstance().unregister(this);
-        super.onDestroy();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,24 +100,12 @@ public class MovieGridFragment extends Fragment{
 
         if(savedInstanceState != null)
         {
-            setListValuesAndNotify();
+            setMovieDataModelArrayList(movieDataModelArrayList);
         }
 
         return rootView;
     }
 
-    @Subscribe public void onDataRetrieved(DataRetrivalResultEvent event )
-    {
-        Log.d(TAG, "onDataRetrieved: Subscription");
-        setMovieDataModelArrayList(event.getMovieDataModelArrayList());
-        setListValuesAndNotify();
-    }
-
-    private void setListValuesAndNotify()
-    {
-        movieGridAdapter.setMovieDataModelArrayList(movieDataModelArrayList);
-        movieGridAdapter.notifyDataSetChanged();
-    }
 
     public ArrayList<MovieBean> getMovieDataModelArrayList() {
         return movieDataModelArrayList;
