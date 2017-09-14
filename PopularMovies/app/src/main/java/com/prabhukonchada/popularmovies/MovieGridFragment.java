@@ -128,6 +128,7 @@ public class MovieGridFragment extends Fragment{
                 MovieBean movieObject = (MovieBean) parent.getItemAtPosition(position);
                 Intent navigateToMovieDetail = new Intent(getActivity(), MovieDetailActivity.class);
                 navigateToMovieDetail.putExtra(getString(R.string.movie_object), movieObject);
+                navigateToMovieDetail.putParcelableArrayListExtra("test",getMovieDataModelArrayList());
                 startActivity(navigateToMovieDetail);
             }
         };
