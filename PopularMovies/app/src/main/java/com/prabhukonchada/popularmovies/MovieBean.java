@@ -1,5 +1,6 @@
 package com.prabhukonchada.popularmovies;
 
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,8 +16,10 @@ public class MovieBean implements Parcelable {
     private String title;
     private String backdrop_path;
     private double vote_average;
+    int res_id_poster_image;
+    int res_id_background_image;
 
-    MovieBean(String backdrop_path,String original_title, String overview,String poster_path,String release_date,String title,double vote_average)
+    MovieBean(String backdrop_path,String original_title, String overview,String poster_path,String release_date,String title,double vote_average,int res_id_poster_image,int res_id_background_image)
     {
         this.poster_path = poster_path;
         this.overview = overview;
@@ -24,6 +27,8 @@ public class MovieBean implements Parcelable {
         this.title = title;
         this.backdrop_path = backdrop_path;
         this.vote_average = vote_average;
+        this.res_id_poster_image = res_id_poster_image;
+        this.res_id_background_image = res_id_background_image;
     }
 
     protected MovieBean(Parcel in) {
@@ -34,6 +39,8 @@ public class MovieBean implements Parcelable {
         title =  in.readString();
         backdrop_path = in.readString();
         vote_average = in.readDouble();
+        res_id_background_image = in.readInt();
+        res_id_poster_image = in.readInt();
     }
 
     @SuppressWarnings("unused")
@@ -95,5 +102,7 @@ public class MovieBean implements Parcelable {
         dest.writeString(title);
         dest.writeString(backdrop_path);
         dest.writeDouble(vote_average);
+        dest.writeInt(res_id_poster_image);
+        dest.writeInt(res_id_background_image);
     }
 }

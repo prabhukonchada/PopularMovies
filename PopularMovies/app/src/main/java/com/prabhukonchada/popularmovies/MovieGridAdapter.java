@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -58,9 +59,11 @@ public class MovieGridAdapter extends BaseAdapter {
         {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        StringBuffer posterUrl = new StringBuffer(applicationContext.getString(R.string.image_url_small));
-        holder.moviePosterImage.setImageURI(Uri.parse(posterUrl.append(movieDataModelArrayList.get(position).getPoster_path()).toString()));
+        Uri uri = new Uri.Builder()
+                .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
+                .path(String.valueOf(movieDataModelArrayList.get(position).res_id_poster_image))
+                .build();
+        holder.moviePosterImage.setImageURI(uri);
         Log.d("Poster Path",movieDataModelArrayList.get(position).getPoster_path());
         return convertView;
     }
