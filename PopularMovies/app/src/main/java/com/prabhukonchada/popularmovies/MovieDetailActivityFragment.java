@@ -22,6 +22,7 @@ public class MovieDetailActivityFragment extends Fragment {
     TextView movieReleaseDate;
     TextView movieSynopsis;
     SimpleDraweeView movieBackgroundImage;
+    SimpleDraweeView moviePosterImage;
     MovieBean movieObject;
     String TAG = "Movie Detail :";
 
@@ -45,7 +46,8 @@ public class MovieDetailActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
-        StringBuffer IMAGE_URL = new StringBuffer(getString(R.string.image_url_large));
+        StringBuffer IMAGE_URL_LARGE = new StringBuffer(getString(R.string.image_url_large));
+        StringBuffer IMAGE_URL_SMALL= new StringBuffer(getString(R.string.image_url_small));
 
         StringBuffer voteAverage = new StringBuffer(String.valueOf(movieObject.getVote_average()));
         movieTitle = (TextView) rootView.findViewById(R.id.movieTitle);
@@ -53,13 +55,16 @@ public class MovieDetailActivityFragment extends Fragment {
         movieReleaseDate = (TextView) rootView.findViewById(R.id.movieReleaseDate);
         movieSynopsis = (TextView) rootView.findViewById(R.id.movieSynopsis);
         movieBackgroundImage = (SimpleDraweeView) rootView.findViewById(R.id.movieBackgroundImage);
+        moviePosterImage = (SimpleDraweeView)rootView.findViewById(R.id.moviePosterImage);
 
         movieTitle.setText(movieObject.getTitle());
         movieRating.setText(voteAverage.append(getString(R.string.vote_average_max)));
         movieReleaseDate.setText(movieObject.getRelease_date());
         movieSynopsis.setText(movieObject.getOverview());
-        String imageUrl = IMAGE_URL.append(movieObject.getBackdrop_path()).toString();
+        String imageUrl = IMAGE_URL_LARGE.append(movieObject.getBackdrop_path()).toString();
+        String posterImageUrl = IMAGE_URL_SMALL.append(movieObject.getPoster_path()).toString();
         movieBackgroundImage.setImageURI(Uri.parse(imageUrl));
+        moviePosterImage.setImageURI(Uri.parse(posterImageUrl));
         return rootView;
 
     }

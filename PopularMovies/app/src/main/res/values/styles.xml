@@ -33,6 +33,21 @@
         <item name="placeholderImageScaleType">fitCenter</item>
     </style>
 
+    <style name="image_style_poster" >
+        <item name="android:layout_height">272px</item>
+        <item name="android:layout_width">185px</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="fadeDuration">300</item>
+        <item name="actualImageScaleType">fitCenter</item>
+        <item name="failureImageScaleType">centerInside</item>
+        <item name="retryImageScaleType">centerCrop</item>
+        <item name="progressBarImageScaleType">centerInside</item>
+        <item name="progressBarImage">@drawable/progress_bar</item>
+        <item name="placeholderImage">@drawable/placeholder</item>
+        <item name="progressBarAutoRotateInterval">1000</item>
+        <item name="placeholderImageScaleType">fitCenter</item>
+    </style>
+
     <style name="movie_back_ground_image_style" parent="image_style">
         <item name="viewAspectRatio">1.33</item>
     </style>

@@ -13,6 +13,7 @@
                 style="@style/title_text_view_style"
                 tools:text="Sardar Gabbar Singh" />
 
+
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/movieBackgroundImage"
                 style="@style/movie_back_ground_image_style" />
@@ -37,6 +38,40 @@
                     android:id="@+id/movieSynopsis"
                     style="@style/movie_synopsis_text_view"
                     tools:text = "The Synopsis goes here ..."/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_margin="20dp"
+                    android:id="@+id/moviePosterImage"
+                    style="@style/image_style_poster" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <SeekBar
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/seekbar"
+                        android:layout_marginTop="10dp"
+                        android:max="100"
+                        android:progress="50"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:text="Move The Seekbar To +/- Image Size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
