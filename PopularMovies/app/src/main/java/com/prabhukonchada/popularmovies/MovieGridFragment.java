@@ -44,10 +44,6 @@ public class MovieGridFragment extends Fragment{
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.preference_menu, menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
