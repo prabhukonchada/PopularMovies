@@ -43,6 +43,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:gravity="center"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
 
@@ -66,7 +67,6 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
-
 
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:layout_margin="20dp"
