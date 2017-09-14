@@ -16,6 +16,16 @@ public class MovieBean implements Parcelable {
     private String backdrop_path;
     private double vote_average;
 
+    MovieBean(String backdrop_path,String original_title, String overview,String poster_path,String release_date,String title,double vote_average)
+    {
+        this.poster_path = poster_path;
+        this.overview = overview;
+        this.original_title = original_title;
+        this.title = title;
+        this.backdrop_path = backdrop_path;
+        this.vote_average = vote_average;
+    }
+
     protected MovieBean(Parcel in) {
         poster_path = in.readString();
         overview = in.readString();
