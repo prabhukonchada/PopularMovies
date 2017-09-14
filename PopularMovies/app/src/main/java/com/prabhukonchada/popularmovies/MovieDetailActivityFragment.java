@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -27,6 +29,7 @@ public class MovieDetailActivityFragment extends Fragment {
     SimpleDraweeView movieBackgroundImage;
     SimpleDraweeView moviePosterImage;
     SeekBar imageScaleSeekbar;
+    ArrayList<MovieBean> movieDataModelArrayList;
     MovieBean movieObject;
     String TAG = "Movie Detail :";
 
@@ -41,6 +44,7 @@ public class MovieDetailActivityFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_object))) {
             movieObject = getActivity().getIntent().getParcelableExtra(getString(R.string.movie_object));
+            movieDataModelArrayList = getActivity().getIntent().getParcelableArrayListExtra("test");
         } else {
             movieObject = savedInstanceState.getParcelable(getString(R.string.parcelable_movie_model_object));
         }
@@ -61,7 +65,6 @@ public class MovieDetailActivityFragment extends Fragment {
         movieBackgroundImage = (SimpleDraweeView) rootView.findViewById(R.id.movieBackgroundImage);
         moviePosterImage = (SimpleDraweeView)rootView.findViewById(R.id.moviePosterImage);
         imageScaleSeekbar = (SeekBar)rootView.findViewById(R.id.imageScaleSeekbar);
-
 
         movieTitle.setText(movieObject.getTitle());
         movieRating.setText(voteAverage.append(getString(R.string.vote_average_max)));
