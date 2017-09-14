@@ -25,6 +25,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         movieNavigationPager = (ViewPager)findViewById(R.id.navigateMoviePager);
         movieNavigationPagerAdapter = new MoviePagerAdapter(getSupportFragmentManager(),dataSetSize,0);
         movieNavigationPager.setAdapter(movieNavigationPagerAdapter);
+        movieNavigationPager.setCurrentItem(current_item_position);
         movieNavigationPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
