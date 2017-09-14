@@ -52,13 +52,7 @@ public class MovieGridFragment extends Fragment{
         Log.d(TAG, "onCreate: Fragment");
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcelable_movie_model_list_key))) {
-            if(isOnline(getActivity())) {
-                setMovieDataModelArrayList(movieDataModelArrayList);
-            }
-            else
-            {
-                Toast.makeText(getActivity(),"No Internet Connection",Toast.LENGTH_LONG).show();
-            }
+            setMovieDataModelArrayList(movieDataModelArrayList);
         }
         else
         {
