@@ -6,13 +6,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,12 +106,12 @@ public class MovieGridFragment extends Fragment{
     }
 
     public void setMovieDataModelArrayList(ArrayList<MovieBean> movieDataModelArrayList) {
-        MovieBean movieOne = new MovieBean("/uX7LXnsC7bZJZjn048UCOwkPXWJ.jpg","Minions","Minions Stuart, Kevin and Bob are recruited by Scarlet Overkill, a super-villain who, alongside her inventor husband Herb, hatches a plot to take over the world.","/q0R4crx2SehcEEQEkYObktdeFy.jpg","2015-06-17","Minions",6.4);
-        MovieBean movieTwo = new MovieBean("/o8u0NyEigCEaZHBdCYTRfXR8U4i.jpg","Annabelle: Creation", "Several years after the tragic death of their little girl, a dollmaker and his wife welcome a nun and several girls from a shuttered orphanage into their home, soon becoming the target of the dollmaker's possessed creation, Annabelle.","/tb86j8jVCVsdZnzf8I6cIi65IeM.jpg","2017-08-03","Annabelle: Creation",6.4);
-        MovieBean movieThree = new MovieBean("/tcheoA2nPATCm2vvXw2hVQoaEFD.jpg","It","In a small town in Maine, seven children known as The Losers Club come face to face with life problems, bullies and a monster that takes the shape of a clown called Pennywise.","/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg", "2017-09-06","It",7.6);
-        MovieBean movieFour = new MovieBean("/6aUWe0GSl69wMTSWWexsorMIvwU.jpg","Beauty and the Beast","A live-action adaptation of Disney's version of the classic 'Beauty and the Beast' tale of a cursed prince and a beautiful young woman who helps him break the spell.","/tWqifoYuwLETmmasnGHO7xBjEtt.jpg","2017-03-16","Beauty and the Beast",6.8);
-        MovieBean movieFive = new MovieBean("/bHarw8xrmQeqf3t8HpuMY7zoK4x.jpg","Guardians of the Galaxy","Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.","/y31QB9kn3XSudA15tV7UWQ9XLuW.jpg","2014-07-30","Guardians of the Galaxy",7.9);
-        MovieBean movieSix = new MovieBean("/ibianpvL865w7rBPAg3sPlEXUyh.jpg","The Layover", "When their plane is rerouted due to a hurricane warning, two single female best friends find themselves competing for the same guy during an extended layover in St. Louis.","/kb9osnqanXRpkpm1bnSqAhKoq5T.jpg","2017-09-01","The Layover",4.7);
+        MovieBean movieOne = new MovieBean("/uX7LXnsC7bZJZjn048UCOwkPXWJ.jpg","minions","minions Stuart, Kevin and Bob are recruited by Scarlet Overkill, a super-villain who, alongside her inventor husband Herb, hatches a plot to take over the world.","/q0R4crx2SehcEEQEkYObktdeFy.jpg","2015-06-17","minions",6.4,R.drawable.minions,R.drawable.minions_large);
+        MovieBean movieTwo = new MovieBean("/o8u0NyEigCEaZHBdCYTRfXR8U4i.jpg","annabelle: Creation", "Several years after the tragic death of their little girl, a dollmaker and his wife welcome a nun and several girls from a shuttered orphanage into their home, soon becoming the target of the dollmaker's possessed creation, annabelle.","/tb86j8jVCVsdZnzf8I6cIi65IeM.jpg","2017-08-03","annabelle: Creation",6.4,R.drawable.annabelle,R.drawable.anabelle_large);
+        MovieBean movieThree = new MovieBean("/tcheoA2nPATCm2vvXw2hVQoaEFD.jpg","it","In a small town in Maine, seven children known as The Losers Club come face to face with life problems, bullies and a monster that takes the shape of a clown called Pennywise.","/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg", "2017-09-06","it",7.6,R.drawable.it,R.drawable.it_large);
+        MovieBean movieFour = new MovieBean("/6aUWe0GSl69wMTSWWexsorMIvwU.jpg","Beauty and the Beast","A live-action adaptation of Disney's version of the classic 'Beauty and the Beast' tale of a cursed prince and a beautiful young woman who helps him break the spell.","/tWqifoYuwLETmmasnGHO7xBjEtt.jpg","2017-03-16","Beauty and the Beast",6.8,R.drawable.beauty_and_the_beast,R.drawable.beauty_and_the_beast_large);
+        MovieBean movieFive = new MovieBean("/bHarw8xrmQeqf3t8HpuMY7zoK4x.jpg","Guardians of the Galaxy","Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.","/y31QB9kn3XSudA15tV7UWQ9XLuW.jpg","2014-07-30","Guardians of the Galaxy",7.9,R.drawable.guardians_of_the_galaxy,R.drawable.guardians_of_galaxy_large);
+        MovieBean movieSix = new MovieBean("/ibianpvL865w7rBPAg3sPlEXUyh.jpg","The layover", "When their plane is rerouted due to a hurricane warning, two single female best friends find themselves competing for the same guy during an extended layover in St. Louis.","/kb9osnqanXRpkpm1bnSqAhKoq5T.jpg","2017-09-01","The layover",4.7,R.drawable.layover,R.drawable.layover_large);
         movieDataModelArrayList = new ArrayList<MovieBean>();
         movieDataModelArrayList.add(0,movieOne);
         movieDataModelArrayList.add(1,movieTwo);

@@ -15,6 +15,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -62,8 +63,7 @@ public class MovieDetailActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
-        StringBuffer IMAGE_URL_LARGE = new StringBuffer(getString(R.string.image_url_large));
-        StringBuffer IMAGE_URL_SMALL= new StringBuffer(getString(R.string.image_url_small));
+
 
         StringBuffer voteAverage = new StringBuffer(String.valueOf(movieObject.getVote_average()));
         movieTitle = (TextView) rootView.findViewById(R.id.movieTitle);
@@ -78,10 +78,18 @@ public class MovieDetailActivityFragment extends Fragment {
         movieRating.setText(voteAverage.append(getString(R.string.vote_average_max)));
         movieReleaseDate.setText(movieObject.getRelease_date());
         movieSynopsis.setText(movieObject.getOverview());
-        String imageUrl = IMAGE_URL_LARGE.append(movieObject.getBackdrop_path()).toString();
-        String posterImageUrl = IMAGE_URL_SMALL.append(movieObject.getPoster_path()).toString();
-        movieBackgroundImage.setImageURI(Uri.parse(imageUrl));
-        moviePosterImage.setImageURI(Uri.parse(posterImageUrl));
+        Uri poster_uri = new Uri.Builder()
+                .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
+                .path(String.valueOf(movieDataModelArrayList.get(position).res_id_poster_image))
+                .build();
+        Uri bg_uri = new Uri.Builder()
+                .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
+                .path(String.valueOf(movieDataModelArrayList.get(position).res_id_background_image))
+                .build();
+        Log.d("poster_uri",String.valueOf(poster_uri));
+        Log.d("bg_uri",String.valueOf(bg_uri));
+        movieBackgroundImage.setImageURI(poster_uri);
+        moviePosterImage.setImageURI(bg_uri);
 
 
         imageScaleSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
