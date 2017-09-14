@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -23,6 +24,7 @@ public class MovieDetailActivityFragment extends Fragment {
     TextView movieSynopsis;
     SimpleDraweeView movieBackgroundImage;
     SimpleDraweeView moviePosterImage;
+    SeekBar imageScaleSeekbar;
     MovieBean movieObject;
     String TAG = "Movie Detail :";
 
@@ -56,6 +58,8 @@ public class MovieDetailActivityFragment extends Fragment {
         movieSynopsis = (TextView) rootView.findViewById(R.id.movieSynopsis);
         movieBackgroundImage = (SimpleDraweeView) rootView.findViewById(R.id.movieBackgroundImage);
         moviePosterImage = (SimpleDraweeView)rootView.findViewById(R.id.moviePosterImage);
+        imageScaleSeekbar = (SeekBar)rootView.findViewById(R.id.imageScaleSeekbar);
+
 
         movieTitle.setText(movieObject.getTitle());
         movieRating.setText(voteAverage.append(getString(R.string.vote_average_max)));
@@ -65,6 +69,23 @@ public class MovieDetailActivityFragment extends Fragment {
         String posterImageUrl = IMAGE_URL_SMALL.append(movieObject.getPoster_path()).toString();
         movieBackgroundImage.setImageURI(Uri.parse(imageUrl));
         moviePosterImage.setImageURI(Uri.parse(posterImageUrl));
+
+
+        imageScaleSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                ViewGroup.LayoutParams params=moviePosterImage.getLayoutParams();
+                params.width=progress*4;
+                params.height=progress*6;
+                moviePosterImage.setLayoutParams(params);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar){}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar){}
+        });
         return rootView;
 
     }
