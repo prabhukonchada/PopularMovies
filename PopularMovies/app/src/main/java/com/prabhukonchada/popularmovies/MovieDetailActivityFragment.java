@@ -3,6 +3,7 @@ package com.prabhukonchada.popularmovies;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -47,7 +49,7 @@ public class MovieDetailActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         StringBuffer IMAGE_URL_LARGE = new StringBuffer(getString(R.string.image_url_large));
         StringBuffer IMAGE_URL_SMALL= new StringBuffer(getString(R.string.image_url_small));
 
@@ -86,6 +88,25 @@ public class MovieDetailActivityFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar){}
         });
+
+        moviePosterImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                imageScaleSeekbar.setProgress(50);
+                return false;
+            }
+        });
+
+        moviePosterImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar snackbar = Snackbar.make(rootView, movieObject.getTitle(), Snackbar.LENGTH_LONG);
+                snackbar.show();
+
+                Toast.makeText(getContext(), movieObject.getTitle(), Toast.LENGTH_LONG).show();
+            }
+        });
+
         return rootView;
 
     }
