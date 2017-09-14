@@ -2,6 +2,7 @@ package com.prabhukonchada.popularmovies;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class MovieGridAdapter extends BaseAdapter {
 
         StringBuffer posterUrl = new StringBuffer(applicationContext.getString(R.string.image_url_small));
         holder.moviePosterImage.setImageURI(Uri.parse(posterUrl.append(movieDataModelArrayList.get(position).getPoster_path()).toString()));
+        Log.d("Poster Path",movieDataModelArrayList.get(position).getPoster_path());
         return convertView;
     }
 
