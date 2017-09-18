@@ -41,39 +41,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <SeekBar
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageScaleSeekbar"
-                        android:layout_margin="10dp"
-                        android:max="100"
-                        android:progress="50" />
-
-                    <TextView
-                        android:gravity="center"
-                        android:text="Move The Seekbar To +/- Image Size"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:layout_margin="20dp"
-                    android:id="@+id/moviePosterImage"
-                    style="@style/image_style_poster" />
-
-            </LinearLayout>
 
         </LinearLayout>
 

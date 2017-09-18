@@ -29,8 +29,6 @@ public class MovieDetailActivityFragment extends Fragment {
     TextView movieReleaseDate;
     TextView movieSynopsis;
     SimpleDraweeView movieBackgroundImage;
-    SimpleDraweeView moviePosterImage;
-    SeekBar imageScaleSeekbar;
     ArrayList<MovieBean> movieDataModelArrayList;
     MovieBean movieObject;
     int position;
@@ -71,8 +69,6 @@ public class MovieDetailActivityFragment extends Fragment {
         movieReleaseDate = (TextView) rootView.findViewById(R.id.movieReleaseDate);
         movieSynopsis = (TextView) rootView.findViewById(R.id.movieSynopsis);
         movieBackgroundImage = (SimpleDraweeView) rootView.findViewById(R.id.movieBackgroundImage);
-        moviePosterImage = (SimpleDraweeView)rootView.findViewById(R.id.moviePosterImage);
-        imageScaleSeekbar = (SeekBar)rootView.findViewById(R.id.imageScaleSeekbar);
 
         movieTitle.setText(movieObject.getTitle());
         movieRating.setText(voteAverage.append(getString(R.string.vote_average_max)));
@@ -81,42 +77,7 @@ public class MovieDetailActivityFragment extends Fragment {
         String imageUrl = IMAGE_URL_LARGE.append(movieObject.getBackdrop_path()).toString();
         String posterImageUrl = IMAGE_URL_SMALL.append(movieObject.getPoster_path()).toString();
         movieBackgroundImage.setImageURI(Uri.parse(imageUrl));
-        moviePosterImage.setImageURI(Uri.parse(posterImageUrl));
 
-
-        imageScaleSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
-        {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-                ViewGroup.LayoutParams params=moviePosterImage.getLayoutParams();
-                params.width=progress*4;
-                params.height=progress*6;
-                moviePosterImage.setLayoutParams(params);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar){}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar){}
-        });
-
-        moviePosterImage.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                imageScaleSeekbar.setProgress(50);
-                return false;
-            }
-        });
-
-        moviePosterImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar snackbar = Snackbar.make(rootView, movieObject.getTitle(), Snackbar.LENGTH_LONG);
-                snackbar.show();
-
-                Toast.makeText(getContext(), movieObject.getTitle(), Toast.LENGTH_LONG).show();
-            }
-        });
 
         return rootView;
 
