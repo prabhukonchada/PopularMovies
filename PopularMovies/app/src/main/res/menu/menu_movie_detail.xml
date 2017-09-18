@@ -4,7 +4,13 @@
     tools:context="com.prabhukonchada.popularmovies.MovieDetailActivity">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:title="Privacy Policy"
+        android:id="@+id/privacy_policy"
+        app:showAsAction="never"
+        />
+
 </menu>

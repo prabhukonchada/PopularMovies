@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.apxor.androidsdk.ApxorSDK;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class MoviesActivity extends AppCompatActivity {
@@ -20,9 +21,10 @@ public class MoviesActivity extends AppCompatActivity {
         // Initialise Fresco Library
         Fresco.initialize(this);
 
-        // TODO:Initialise Apxor SDK
-        // TODO: Call The Api To Get Apps
-        // Add privacy policy
+        // Initialise Apxor SDK
+        ApxorSDK.initialize("44681089-9c40-4601-9889-58099bf93f6c",this.getApplicationContext());
+
+        ApxorSDK.setPrivacyPermissionStatus(true);
         
         // Handling orientation change
         if(savedInstanceState == null) {
