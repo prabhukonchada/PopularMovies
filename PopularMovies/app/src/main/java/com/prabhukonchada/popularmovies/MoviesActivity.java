@@ -19,6 +19,10 @@ public class MoviesActivity extends AppCompatActivity {
 
         // Initialise Fresco Library
         Fresco.initialize(this);
+
+        // TODO:Initialise Apxor SDK
+        // TODO: Call The Api To Get Apps
+        // Add privacy policy
         
         // Handling orientation change
         if(savedInstanceState == null) {
