@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -59,6 +60,11 @@ public class MovieGridFragment extends Fragment{
         if (id == R.id.sort_movies) {
             Intent showMovieSortPreference = new Intent(getActivity(), SortMoviesPreferenceActivity.class);
             startActivity(showMovieSortPreference);
+        }
+        if(id == R.id.privacy_policy)
+        {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://fanstation.in/privacy-and-terms/"));
+            startActivity(browserIntent);
         }
         return super.onOptionsItemSelected(item);
     }

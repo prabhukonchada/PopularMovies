@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "479399468237",
+    "firebase_url": "https://movieflix-684fe.firebaseio.com",
+    "project_id": "movieflix-684fe",
+    "storage_bucket": "movieflix-684fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479399468237:android:609ec5e625398f66",
+        "android_client_info": {
+          "package_name": "com.prabhukonchada.popularmovies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479399468237-e3mqh13p172evtfrpmni1t61m95ckou7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGVIZ1xPL_Bdx2ObdnJm-SCUp1LLDQY_E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

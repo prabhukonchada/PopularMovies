@@ -1,7 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.prabhukonchada.popularmovies.MovieDetailActivityFragment"
-    tools:showIn="@layout/activity_movie_detail"
     style="@style/width_height_match_parent_layout_view">
 
     <ScrollView style="@style/scroll_view">
