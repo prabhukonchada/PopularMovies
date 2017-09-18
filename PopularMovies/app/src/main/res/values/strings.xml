@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movie Buddy</string>
+    <string name="app_name">Movie Flix</string>
 
     <!-- List Preference To Sort Movies -->
     <string name="pref_menu_title">Preferences</string>
