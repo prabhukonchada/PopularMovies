@@ -28,7 +28,6 @@
         <item name="retryImageScaleType">centerCrop</item>
         <item name="progressBarImageScaleType">centerInside</item>
         <item name="progressBarImage">@drawable/progress_bar</item>
-        <item name="placeholderImage">@drawable/placeholder</item>
         <item name="progressBarAutoRotateInterval">1000</item>
         <item name="placeholderImageScaleType">fitCenter</item>
     </style>
@@ -43,7 +42,6 @@
         <item name="retryImageScaleType">centerCrop</item>
         <item name="progressBarImageScaleType">centerInside</item>
         <item name="progressBarImage">@drawable/progress_bar</item>
-        <item name="placeholderImage">@drawable/placeholder</item>
         <item name="progressBarAutoRotateInterval">1000</item>
         <item name="placeholderImageScaleType">fitCenter</item>
     </style>
